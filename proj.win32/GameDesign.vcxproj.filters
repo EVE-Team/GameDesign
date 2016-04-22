@@ -21,6 +21,16 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BackGround.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="StatisticsScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -32,6 +42,19 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\BackGround.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Resources.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="StatisticsScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

@@ -9,11 +9,11 @@ public:
 	static Scene* CreateScene();
 	bool Init(Scene *scene);
 
-	void MenuCloseCallback();
+	void MenuCloseCallback(Ref* pSender);
 	void SetEventListener();
 	void CreateSceneLabels();
-	void CMainMenuScene::ChooseAction(int action);
-	void CMainMenuScene::ShowStatistics();
+	void ChooseAction(int action);
+	void ShowStatistics();
 	 
 	CMainMenuScene();
 	~CMainMenuScene();

@@ -1,6 +1,6 @@
 #include "StatisticsScene.h"
-#include "Resources.h"
 #include "BackGround.h"
+#include "CONSTANTS.h"
 
 Scene* CStatisticsScene::CreateScene()
 {
@@ -15,7 +15,7 @@ Scene* CStatisticsScene::CreateScene()
 
 bool CStatisticsScene::Init(Scene *scene)
 {
-	auto backGround = CBackGround::Create(splashBackGroundFileName);
+	auto backGround = CBackGround::Create(CONSTANTS::SPLASH_BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	SetEventListener();
 	CreateSceneLabels();
@@ -25,12 +25,12 @@ bool CStatisticsScene::Init(Scene *scene)
 
 void CStatisticsScene::CreateSceneLabels()
 {
-	auto header = Label::createWithTTF(statisticsText, fontName, 34);
+	auto header = Label::createWithTTF(CONSTANTS::STAT_CAPTION, CONSTANTS::FONT_NAME, 34);
 	header->setPosition(Vec2(240, 280));
 	header->setTag(1);
 	this->addChild(header, 1);
 
-	auto exitLabel = Label::createWithTTF(backStepText, fontName, 20);
+	auto exitLabel = Label::createWithTTF(CONSTANTS::BACK_CAPTION, CONSTANTS::FONT_NAME, 20);
 	exitLabel->setPosition(Vec2(240, 180));
 	exitLabel->setTag(2);
 	this->addChild(exitLabel, 1);
@@ -38,14 +38,14 @@ void CStatisticsScene::CreateSceneLabels()
 
 void CStatisticsScene::SetEventListener()
 {
-	auto listener1 = EventListenerTouchOneByOne::create();
-	listener1->setSwallowTouches(true);
-	listener1->onTouchBegan = [](Touch* touch, Event* event){
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->setSwallowTouches(true);
+	listener->onTouchBegan = [](Touch* touch, Event* event){
 		auto target = static_cast<Label*>(event->getCurrentTarget());
 		target->setVisible(false);
 		return true;
 	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
 CStatisticsScene::CStatisticsScene()

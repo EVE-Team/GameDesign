@@ -1,8 +1,9 @@
 #include "MainMenuScene.h"
-#include "Resources.h"
 #include "BackGround.h"
+#include "HelloWorldScene.h"
 #include "StatisticsScene.h"
 #include "ui\CocosGUI.h"
+#include "CONSTANTS.h"
 
 Scene* CMainMenuScene::CreateScene()
 {
@@ -17,7 +18,7 @@ Scene* CMainMenuScene::CreateScene()
 
 bool CMainMenuScene::Init(Scene *scene)
 {
-	auto backGround = CBackGround::Create(splashBackGroundFileName);
+	auto backGround = CBackGround::Create(CONSTANTS::SPLASH_BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	//SetEventListener();
 	CreateSceneLabels();
@@ -27,32 +28,58 @@ bool CMainMenuScene::Init(Scene *scene)
 
 void CMainMenuScene::CreateSceneLabels()
 {
-	auto name = Label::createWithTTF(gameName, fontName, 34);
+	auto name = Label::createWithTTF(CONSTANTS::GAME_NAME, CONSTANTS::FONT_NAME, 34);
 	name->setPosition(Vec2(240, 280));
 	name->setTag(1);
 	this->addChild(name, 1);
 
-	auto startLabel = Label::createWithTTF(startGameText, fontName, 30);
+	/*auto startLabel = Label::createWithTTF(CONSTANTS::START_GAME_CAPTION, CONSTANTS::FONT_NAME, 30);
 	startLabel->setPosition(Vec2(240, 240));
 	startLabel->setTag(2);
-	this->addChild(startLabel, 1);
+	this->addChild(startLabel, 1);*/
 
 	/*auto statisticsLabel = Label::createWithTTF(statisticsText, fontName, 30);
 	statisticsLabel->setPosition(Vec2(240, 210));
 	statisticsLabel->setTag(3);
 	this->addChild(statisticsLabel, 1);*/
 
+	auto btnNewGame = ui::Button::create();
+	btnNewGame->setTitleText(CONSTANTS::START_GAME_CAPTION);
+	btnNewGame->setColor(Color3B::BLUE);
+	btnNewGame->setTitleFontSize(30);
+	btnNewGame->setTitleFontName(CONSTANTS::FONT_NAME);
+	btnNewGame->setPosition(Vec2(240, 240));
+	btnNewGame->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			{
+				auto scene = HelloWorld::createScene();
+				Director::getInstance()->replaceScene(scene);
+			}			
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			break;
+		default:
+			break;
+		}
+	});
+	this->addChild(btnNewGame);
+
 	auto statisticsButton = ui::Button::create();
-	statisticsButton->setTitleText(statisticsText);
+	statisticsButton->setTitleText(CONSTANTS::STAT_CAPTION);
 	statisticsButton->setColor(Color3B::BLUE);
 	statisticsButton->setTitleFontSize(30);
-	statisticsButton->setTitleFontName(fontName);
+	statisticsButton->setTitleFontName(CONSTANTS::FONT_NAME);
 	statisticsButton->setPosition(Vec2(240, 210));
 	statisticsButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)
 		{
 		case ui::Widget::TouchEventType::BEGAN:
-			MenuCloseCallback(this);
+			{
+				auto scene = CStatisticsScene::CreateScene();
+				Director::getInstance()->replaceScene(scene);
+			}			
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			break;
@@ -64,10 +91,10 @@ void CMainMenuScene::CreateSceneLabels()
 	this->addChild(statisticsButton);
 
 	auto exitButton = ui::Button::create();
-	exitButton->setTitleText(exitGameText);
+	exitButton->setTitleText(CONSTANTS::EXIT_CAPTION);
 	exitButton->setColor(Color3B::BLUE);
 	exitButton->setTitleFontSize(30);
-	exitButton->setTitleFontName(fontName);
+	exitButton->setTitleFontName(CONSTANTS::FONT_NAME);
 	exitButton->setPosition(Vec2(240, 180));
 	exitButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)

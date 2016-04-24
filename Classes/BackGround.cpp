@@ -1,7 +1,6 @@
 #include "BackGround.h"
 #include "cocos2d.h"
 #include "string"
-#include "Resources.h"
 
 USING_NS_CC;
 

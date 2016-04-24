@@ -1,6 +1,6 @@
 #include "GameScene.h"
-#include "Resources.h"
 #include "BackGround.h"
+#include "CONSTANTS.h"
 
 Scene* CGameScene::CreateScene()
 {
@@ -15,7 +15,7 @@ Scene* CGameScene::CreateScene()
 
 bool CGameScene::Init(Scene *scene)
 {
-	auto backGround = CBackGround::Create(splashBackGroundFileName);
+	auto backGround = CBackGround::Create(CONSTANTS::SPLASH_BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	SetEventListener();
 	CreateSceneLabels();
@@ -25,22 +25,22 @@ bool CGameScene::Init(Scene *scene)
 
 void CGameScene::CreateSceneLabels()
 {
-	auto name = Label::createWithTTF(gameName, fontName, 34);
+	auto name = Label::createWithTTF(CONSTANTS::GAME_NAME, CONSTANTS::FONT_NAME, 34);
 	name->setPosition(Vec2(240, 280));
 	name->setTag(1);
 	this->addChild(name, 1);
 
-	auto startLabel = Label::createWithTTF(startGameText, fontName, 20);
+	auto startLabel = Label::createWithTTF(CONSTANTS::START_GAME_CAPTION, CONSTANTS::FONT_NAME, 20);
 	startLabel->setPosition(Vec2(240, 240));
 	startLabel->setTag(2);
 	this->addChild(startLabel, 1);
 
-	auto statisticsLabel = Label::createWithTTF(statisticsText, fontName, 20);
+	auto statisticsLabel = Label::createWithTTF(CONSTANTS::STAT_CAPTION, CONSTANTS::FONT_NAME, 20);
 	statisticsLabel->setPosition(Vec2(240, 210));
 	statisticsLabel->setTag(3);
 	this->addChild(statisticsLabel, 1);
 
-	auto exitLabel = Label::createWithTTF(exitGameText, fontName, 20);
+	auto exitLabel = Label::createWithTTF(CONSTANTS::EXIT_CAPTION, CONSTANTS::FONT_NAME, 20);
 	exitLabel->setPosition(Vec2(240, 180));
 	exitLabel->setTag(4);
 	this->addChild(exitLabel, 1);

@@ -10,26 +10,46 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\App">
+      <UniqueIdentifier>{b58edb18-69ca-4010-98ca-7ee275901d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Objects">
+      <UniqueIdentifier>{a8167388-b734-4057-b8cd-28c8422ed0f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes">
+      <UniqueIdentifier>{6ddd96cc-4e90-419f-b3de-25370df54088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Constants">
+      <UniqueIdentifier>{32124b7b-4f4c-4a33-8087-313ea3b2c509}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
+      <Filter>src\App</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BackGround.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MainMenuScene.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="..\Classes\StatisticsScene.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CONSTANTS.cpp">
+      <Filter>src\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bomb.cpp">
+      <Filter>src\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37,23 +57,28 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
+      <Filter>src\App</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BackGround.h">
-      <Filter>src</Filter>
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainMenuScene.h">
-      <Filter>src</Filter>
+      <Filter>src\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Resources.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h" />
     <ClInclude Include="..\Classes\StatisticsScene.h">
-      <Filter>src</Filter>
+      <Filter>src\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CONSTANTS.h">
+      <Filter>src\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bomb.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

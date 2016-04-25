@@ -1,5 +1,8 @@
 #include "HelloWorldScene.h"
 #include "Bomb.h"
+#include "BackGround.h"
+#include "CONSTANTS.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -72,10 +75,46 @@ bool HelloWorld::init()
  //   // add the sprite as a child to this layer
  //   this->addChild(sprite, 0);
 
+	auto backGround = CBackGround::Create(CONSTANTS::SEA_SPRITE_FILENAME);
+	this->addChild(backGround, 0);
 
-	auto bomb = CBomb::Create("bomb.png");
-	bomb->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	this->addChild(bomb, 0);
+	int shift_x = 150;
+	int shift_y = 100;
+
+
+	std::vector<CBomb*> bombs;
+	for (int i = 0; i < 2; ++i)
+	{
+		for (int j = 0; j < 5; ++j)
+		{
+			auto bomb = CBomb::Create("mine.png");
+			bomb->setPosition(Vec2(origin.x + shift_x, origin.y + shift_y));
+
+			//auto listener = EventListenerTouchOneByOne::create();
+			//listener->setSwallowTouches(true);
+			//listener->onTouchBegan = [](Touch* touch, Event* event){
+			//	auto target = static_cast<Sprite*>(event->getCurrentTarget());
+			//	target->setVisible(false);
+			//	Rect rect = target->getBoundingBox();
+
+			//	if (rect.containsPoint()
+			//	{
+
+			//	}
+			//	return true;
+			//	//	//Move the position of current button sprite
+			//	//target->setPosition(target->getPosition() + touch->getDelta());
+			//};
+			///*auto contactListener = EventListenerTouch::create()*/;
+			////listener1->onTouchBegan = CC_CALLBACK_1(CBomb::onContactBegin, this);
+			//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, bomb);
+
+			this->addChild(bomb, 0);
+			shift_x += 50;
+		}
+		shift_y += 100;
+		shift_x = 150;
+	}
     
     return true;
 }

@@ -15,5 +15,7 @@ public:
 	bool Init(Sprite *sprite);
 
 	void SetContactListener();
+private:
+	void TouchEvent(Touch* touch);
 };
 

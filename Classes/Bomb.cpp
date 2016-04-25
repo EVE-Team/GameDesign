@@ -57,15 +57,32 @@ void CBomb::SetContactListener()
 {
 	auto listener1 = EventListenerTouchOneByOne::create();
 	listener1->setSwallowTouches(true);
-	listener1->onTouchBegan = [](Touch* touch, Event* event){
+	listener1->onTouchBegan = [&](Touch* touch, Event* event){
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		target->setVisible(false);
-		return true;
+		Point location = target->convertToNodeSpace(touch->getLocation());
+		Size s = target->getContentSize();
+		Rect rect = Rect(0,0,s.width,s.height);
+
+		if (rect.containsPoint(location))
+		{
+			return true;
+		}
+		
+		return false;
 	//	//Move the position of current button sprite
 		//target->setPosition(target->getPosition() + touch->getDelta());
 	};
+	listener1->onTouchEnded = [=](Touch* touch, Event* event){
+		TouchEvent(touch);
+	};
 	///*auto contactListener = EventListenerTouch::create()*/;
 	////listener1->onTouchBegan = CC_CALLBACK_1(CBomb::onContactBegin, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this);
-	//_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this);
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener1, this);
+}
+
+void CBomb::TouchEvent(Touch* touch)
+{
+
+	this->setVisible(false);
 }

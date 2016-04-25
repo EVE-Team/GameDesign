@@ -19,7 +19,5 @@ public:
 	~CMainMenuScene();
 
 	CREATE_FUNC(CMainMenuScene);
-private:
-
 };
 

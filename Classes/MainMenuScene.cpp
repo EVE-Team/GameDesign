@@ -20,7 +20,7 @@ bool CMainMenuScene::Init(Scene *scene)
 {
 	auto backGround = CBackGround::Create(CONSTANTS::SPLASH_BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
-	//SetEventListener();
+
 	CreateSceneLabels();
 
 	return true;
@@ -32,16 +32,6 @@ void CMainMenuScene::CreateSceneLabels()
 	name->setPosition(Vec2(240, 280));
 	name->setTag(1);
 	this->addChild(name, 1);
-
-	/*auto startLabel = Label::createWithTTF(CONSTANTS::START_GAME_CAPTION, CONSTANTS::FONT_NAME, 30);
-	startLabel->setPosition(Vec2(240, 240));
-	startLabel->setTag(2);
-	this->addChild(startLabel, 1);*/
-
-	/*auto statisticsLabel = Label::createWithTTF(statisticsText, fontName, 30);
-	statisticsLabel->setPosition(Vec2(240, 210));
-	statisticsLabel->setTag(3);
-	this->addChild(statisticsLabel, 1);*/
 
 	auto btnNewGame = ui::Button::create();
 	btnNewGame->setTitleText(CONSTANTS::START_GAME_CAPTION);
@@ -110,36 +100,6 @@ void CMainMenuScene::CreateSceneLabels()
 	});
 
 	this->addChild(exitButton);
-}
-
-void CMainMenuScene::SetEventListener()
-{
-	auto listener1 = EventListenerTouchOneByOne::create();
-	listener1->setSwallowTouches(true);
-	listener1->onTouchBegan = [](Touch* touch, Event* event){
-		auto target = static_cast<Label*>(event->getCurrentTarget());
-		if (target->getPhysicsBody()->getTag() == 6)
-		{
-			int i = 0;
-		}
-		return true;
-	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this);
-}
-
-void CMainMenuScene::ChooseAction(int action)
-{
-	switch (action)
-	{
-	case 2: break;
-	case 3: break;
-	case 4: break;
-	}
-}
-
-void CMainMenuScene::ShowStatistics()
-{
-	auto scene = CStatisticsScene::CreateScene();
 }
 
 void CMainMenuScene::MenuCloseCallback(Ref* pSender)

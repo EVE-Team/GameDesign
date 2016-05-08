@@ -51,6 +51,12 @@
     <ClCompile Include="..\Classes\Bomb.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AirPLane.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -78,6 +84,12 @@
       <Filter>src\Constants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Bomb.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ship.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AirPLane.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

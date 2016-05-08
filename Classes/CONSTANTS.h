@@ -17,8 +17,10 @@ namespace CONSTANTS
 	static const std::string STAT_CAPTION = "Statistics";
 	static const std::string EXIT_CAPTION = "Exit";
 	static const std::string BACK_CAPTION = "Back";
-	static const std::string BOMB_SPRITE_FILENAME = "bomb.png";
-	static const std::string SEA_SPRITE_FILENAME = "sea.jpg";
+	static const std::string MINE_SPRITE_FILENAME = "mine.png";
+	static const std::string SEA_SPRITE_FILENAME = "water_texture.jpg";
+	static const std::string SHIP_SPRITE_FILENAME = "ship.png";
+	static const std::string AIRPLANE_SPRITE_FILENAME = "airplane.png";
 };
 
 

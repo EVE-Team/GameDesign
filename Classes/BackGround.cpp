@@ -13,7 +13,7 @@ CBackGround* CBackGround::Create(const string &fileName)
 	if (backGroundSprite && backGroundSprite->initWithFile(fileName))
 	{
 		backGroundSprite->autorelease();
-		backGroundSprite->setPosition(250, 150);
+		backGroundSprite->setPosition(240, 150);
 	}
 	else
 	{

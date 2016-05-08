@@ -8,6 +8,8 @@ using namespace std;
 using namespace cocos2d;
 
 CBomb::CBomb()
+	: position_x(0)
+	, position_y(0)
 {
 }
 
@@ -78,4 +80,10 @@ void CBomb::SetContactListener()
 void CBomb::TouchEvent(Touch* touch)
 {
 	this->setVisible(false);
+}
+
+void CBomb::SetPosition(int x, int y)
+{
+	position_x = x;
+	position_y = y;
 }

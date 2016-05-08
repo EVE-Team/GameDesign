@@ -14,8 +14,11 @@ public:
 	static CBomb* Create(const string &fileName);
 	bool Init(Sprite *sprite);
 
+	void SetPosition(int x, int y);
 	void SetContactListener();
 private:
 	void TouchEvent(Touch* touch);
+	int position_x;
+	int position_y;
 };
 

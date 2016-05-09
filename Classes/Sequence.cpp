@@ -7,6 +7,7 @@ using namespace cocos2d;
 
 MyCSequence::MyCSequence()
 {
+	FillBasicPoints();
 }
 
 MyCSequence::~MyCSequence()
@@ -66,17 +67,17 @@ void MyCSequence::FillBasicPoints()
 	basicPoints.push_back(point9);
 }
 
-std::vector<MyPoint*> MyCSequence::Create(const int count)
+vector<MyPoint*> MyCSequence::Create(const int count)
 {
 	int prevRandom = -1;
 	int currRandom = 0;
 	for (int i = 0; i < count; ++i)
 	{
-		currRandom = rand();
+		currRandom = rand() % 10;
 		if (currRandom != prevRandom)
 		{
-			MyPoint* point = &basicPoints[currRandom];
-			points.push_back(point);
+			points.push_back(basicPoints[currRandom]);
+			prevRandom = currRandom;
 		}
 		else
 		{

@@ -2,6 +2,10 @@
 
 #include "cocos2d.h"
 #include "Point.h"
+#include <vector>
+
+using namespace std;
+using namespace cocos2d;
 
 class MyCSequence
 {
@@ -9,11 +13,11 @@ public:
 	MyCSequence();
 	~MyCSequence();
 
-	static std::vector<MyPoint*> Create(const int count);
+	vector<MyPoint*> Create(const int count);
 	void FillBasicPoints();
 
 private:
-	std::vector<MyPoint*> points;
-	std::vector<MyPoint*> basicPoints;
+	vector<MyPoint*> points;
+	vector<MyPoint*> basicPoints;
 };
 

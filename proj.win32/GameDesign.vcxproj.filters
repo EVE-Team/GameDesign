@@ -57,6 +57,12 @@
     <ClCompile Include="AirPLane.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Sequence.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json11.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -90,6 +96,15 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="AirPLane.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json11.hpp">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,6 +21,7 @@ namespace CONSTANTS
 	static const std::string SEA_SPRITE_FILENAME = "water_texture.jpg";
 	static const std::string SHIP_SPRITE_FILENAME = "ship.png";
 	static const std::string AIRPLANE_SPRITE_FILENAME = "airplane.png";
+	static const std::string POINTS_FILENAME = "points.json";
 };
 
 

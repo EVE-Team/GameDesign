@@ -144,6 +144,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\AirPLane.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\BackGround.cpp" />
     <ClCompile Include="..\Classes\Bomb.cpp" />
@@ -152,13 +153,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\json11.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
+    <ClCompile Include="..\Classes\Sequence.cpp" />
+    <ClCompile Include="..\Classes\Ship.cpp" />
     <ClCompile Include="..\Classes\StatisticsScene.cpp" />
-    <ClCompile Include="AirPLane.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Sequence.cpp" />
-    <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\AirPLane.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BackGround.h" />
     <ClInclude Include="..\Classes\Bomb.h" />
@@ -167,12 +168,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\json11.hpp" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
+    <ClInclude Include="..\Classes\Sequence.h" />
+    <ClInclude Include="..\Classes\Ship.h" />
     <ClInclude Include="..\Classes\StatisticsScene.h" />
-    <ClInclude Include="AirPLane.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Point.h" />
-    <ClInclude Include="Sequence.h" />
-    <ClInclude Include="Ship.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

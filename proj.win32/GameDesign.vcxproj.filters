@@ -51,16 +51,16 @@
     <ClCompile Include="..\Classes\Bomb.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Ship.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="AirPLane.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\json11.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AirPLane.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Sequence.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Ship.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,19 +92,19 @@
     <ClInclude Include="..\Classes\Bomb.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Ship.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="AirPLane.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Point.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence.h">
+    <ClInclude Include="..\Classes\json11.hpp">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\json11.hpp">
+    <ClInclude Include="..\Classes\AirPLane.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Sequence.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Ship.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

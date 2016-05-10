@@ -36,6 +36,7 @@ bool HelloWorld::init()
 	{
 		auto bomb = CBomb::Create(CONSTANTS::MINE_SPRITE_FILENAME);
 		bombs.push_back(bomb);
+		this->addChild(bomb, 0);
 		bombs[i]->setPosition(Vec2(seq[i]->x, seq[i]->y));
 	}
 

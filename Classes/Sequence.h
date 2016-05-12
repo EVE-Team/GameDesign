@@ -13,11 +13,11 @@ public:
 	MyCSequence();
 	~MyCSequence();
 
-	vector<MyPoint*> Create(const int count);
+	set<MyPoint*> Create(const int count);
 	void FillBasicPoints();
 
 private:
-	vector<MyPoint*> points;
+	set<MyPoint*> points;
 	vector<MyPoint*> basicPoints;
 };
 

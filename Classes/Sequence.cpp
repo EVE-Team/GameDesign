@@ -67,22 +67,12 @@ void MyCSequence::FillBasicPoints()
 	basicPoints.push_back(point9);
 }
 
-vector<MyPoint*> MyCSequence::Create(const int count)
+set<MyPoint*> MyCSequence::Create(const int count)
 {
-	int prevRandom = -1;
-	int currRandom = 0;
-	for (int i = 0; i < count; ++i)
+	while (points.size() != count)
 	{
-		currRandom = rand() % 10;
-		if (currRandom != prevRandom)
-		{
-			points.push_back(basicPoints[currRandom]);
-			prevRandom = currRandom;
-		}
-		else
-		{
-			--i;
-		}
+		int currRandom = rand() % 10;
+		points.insert(basicPoints[currRandom]);
 	}
 
 	return points;

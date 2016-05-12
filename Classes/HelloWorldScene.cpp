@@ -32,12 +32,15 @@ bool HelloWorld::init()
 	auto sequence = new MyCSequence();
 	auto seq = sequence->Create(3);
 
-	for (int i = 0; i < 3; ++i)
+	int i = 0;
+	for (set<MyPoint*>::iterator it = seq.begin(); it != seq.end(), i < 3; ++it, ++i)
 	{
 		auto bomb = CBomb::Create(CONSTANTS::MINE_SPRITE_FILENAME);
 		bombs.push_back(bomb);
 		this->addChild(bomb, 0);
-		bombs[i]->setPosition(Vec2(seq[i]->x, seq[i]->y));
+
+		auto elem = *it;
+		bombs[i]->setPosition(Vec2(elem->x, elem->y));
 	}
 
 	this->scheduleUpdate();

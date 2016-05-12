@@ -2,6 +2,7 @@
 #include "MainMenuScene.h"
 #include "Sequence.h"
 #include "Point.h"
+#include "AirPLane.h"
 
 USING_NS_CC;
 
@@ -42,6 +43,10 @@ bool HelloWorld::init()
 		auto elem = *it;
 		bombs[i]->setPosition(Vec2(elem->x, elem->y));
 	}
+
+	auto airplane = CAirPLane::Create(CONSTANTS::AIRPLANE_SPRITE_FILENAME);
+	this->addChild(airplane, 1);
+	airplane->TestFly(seq);
 
 	this->scheduleUpdate();
     return true;

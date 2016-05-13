@@ -22,6 +22,9 @@
     <Filter Include="src\Constants">
       <UniqueIdentifier>{32124b7b-4f4c-4a33-8087-313ea3b2c509}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\JSONlib">
+      <UniqueIdentifier>{d58bf85e-1a7f-49d1-b877-e706cfd6a2ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,22 +48,22 @@
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CONSTANTS.cpp">
-      <Filter>src\Constants</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Bomb.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\json11.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AirPLane.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Sequence.cpp">
+    <ClCompile Include="..\Classes\Ship.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Ship.cpp">
+    <ClCompile Include="..\Classes\Constants.cpp">
+      <Filter>src\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json11.cpp">
+      <Filter>src\JSONlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CSequenceOfMine.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,25 +89,25 @@
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CONSTANTS.h">
-      <Filter>src\Constants</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Bomb.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Point.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\json11.hpp">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\AirPLane.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Sequence.h">
+    <ClInclude Include="..\Classes\Ship.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Ship.h">
+    <ClInclude Include="..\Classes\Constants.h">
+      <Filter>src\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json11.hpp">
+      <Filter>src\JSONlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CSequenceOfMine.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

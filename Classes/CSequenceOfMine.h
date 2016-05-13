@@ -7,17 +7,17 @@
 using namespace std;
 using namespace cocos2d;
 
-class MyCSequence
+class CSequenceOfMine
 {
 public:
-	MyCSequence();
-	~MyCSequence();
+	CSequenceOfMine();
+	~CSequenceOfMine();
 
 	set<MyPoint*> Create(const int count);
 	void FillBasicPoints();
 
 private:
-	set<MyPoint*> points;
-	vector<MyPoint*> basicPoints;
+	set<MyPoint*> m_points;
+	vector<MyPoint*> m_basicPoints;
 };
 

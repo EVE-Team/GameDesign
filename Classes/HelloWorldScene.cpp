@@ -1,6 +1,6 @@
 #include "HelloWorldScene.h"
 #include "MainMenuScene.h"
-#include "Sequence.h"
+#include "CSequenceOfMine.h"
 #include "Point.h"
 #include "AirPLane.h"
 
@@ -30,7 +30,7 @@ bool HelloWorld::init()
 	auto backGround = CBackGround::Create(CONSTANTS::SEA_SPRITE_FILENAME);
 	this->addChild(backGround, 0);
 
-	auto sequence = new MyCSequence();
+	auto sequence = new CSequenceOfMine();
 	auto seq = sequence->Create(3);
 
 	int i = 0;

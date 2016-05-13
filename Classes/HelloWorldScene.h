@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "Bomb.h"
 #include "BackGround.h"
-#include "CONSTANTS.h"
+#include "Constants.h"
 
 
 class HelloWorld : public cocos2d::Layer

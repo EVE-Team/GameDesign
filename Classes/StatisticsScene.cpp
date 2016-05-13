@@ -1,6 +1,6 @@
 #include "StatisticsScene.h"
 #include "BackGround.h"
-#include "CONSTANTS.h"
+#include "Constants.h"
 
 Scene* CStatisticsScene::CreateScene()
 {

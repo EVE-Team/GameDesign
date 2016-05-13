@@ -3,7 +3,7 @@
 #include "HelloWorldScene.h"
 #include "StatisticsScene.h"
 #include "ui\CocosGUI.h"
-#include "CONSTANTS.h"
+#include "Constants.h"
 
 Scene* CMainMenuScene::CreateScene()
 {

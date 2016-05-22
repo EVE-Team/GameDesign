@@ -20,7 +20,18 @@ namespace CONSTANTS
 	static const std::string MINE_SPRITE_FILENAME = "mine1.png";
 	static const std::string SEA_SPRITE_FILENAME = "water_texture.jpg";
 	static const std::string SHIP_SPRITE_FILENAME = "ship.png";
-	static const std::string AIRPLANE_SPRITE_FILENAME = "plane.png";	
+	static const std::string AIRPLANE_SPRITE_FILENAME = "plane.png";
+
+	static const std::string TRAIN_SPRITE_FILENAME = "train.png";
+	static const std::string CARRIAGE1_SPRITE_FILENAME = "carriage1.png";
+	static const std::string CARRIAGE2_SPRITE_FILENAME = "carriage2.png";
+	static const std::string CARRIAGE3_SPRITE_FILENAME = "carriage3.png";
+	static const std::string CARRIAGE4_SPRITE_FILENAME = "carriage4.png";
+	static const std::string CARRIAGE5_SPRITE_FILENAME = "carriage5.png";
+	static const std::string CARRIAGE6_SPRITE_FILENAME = "carriage6.png";
+	static const std::string CARRIAGE7_SPRITE_FILENAME = "carriage7.png";
+	static const std::string CARRIAGE8_SPRITE_FILENAME = "carriage8.png";
+	static const std::string CARRIAGE9_SPRITE_FILENAME = "carriage9.png";
 
 	namespace BASIC_POINTS
 	{

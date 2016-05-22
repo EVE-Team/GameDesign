@@ -66,6 +66,12 @@
     <ClCompile Include="..\Classes\CSequenceOfMine.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Carriage.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SequenceOfCarriage.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -108,6 +114,12 @@
       <Filter>src\JSONlib</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CSequenceOfMine.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceOfCarriage.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Carriage.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

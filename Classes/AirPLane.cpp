@@ -55,12 +55,22 @@ bool CAirPLane::Init(Sprite *sprite)
 void CAirPLane::TestFly(const set<MyPoint*> points)
 {
 	int i = 0;
+	//vector<FiniteTimeAction*> moves;
+	MoveTo* moves[3];
 	for (set<MyPoint*>::iterator it = points.begin(); it != points.end(), i < 3; ++it, ++i)
 	{
 		auto elem = *it;
 		auto moveTo = MoveTo::create(5.0, Vec2(elem->x, elem->y));
-		auto sequence = Sequence::create(moveTo, 5.0, nullptr);
-		this->runAction(sequence);
-		this->setPosition(Vec2(elem->x, elem->y));
+		moves[i] = moveTo;
+		this->runAction(moveTo);
+		/*while (!(moveTo->isDone()))
+		{
+			void();
+		}*/
 	}
+
+
+	/*auto sequence = Sequence::create(const_cast<MoveTo*>(moves[3]));
+	this->runAction(sequence);*/
+	//this->setPosition(Vec2(elem->x, elem->y));
 }

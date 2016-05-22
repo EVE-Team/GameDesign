@@ -3,6 +3,7 @@
 #include "CSequenceOfMine.h"
 #include "Point.h"
 #include "AirPLane.h"
+#include "Carriage.h"
 
 USING_NS_CC;
 
@@ -30,7 +31,19 @@ bool HelloWorld::init()
 	auto backGround = CBackGround::Create(CONSTANTS::SEA_SPRITE_FILENAME);
 	this->addChild(backGround, 0);
 
-	auto sequence = new CSequenceOfMine();
+	auto car1 = CCarriage::Create(CONSTANTS::CARRIAGE1_SPRITE_FILENAME);
+	car1->setPosition(Vec2(80, 260));
+	this->addChild(car1, 1);
+
+	auto car2 = CCarriage::Create(CONSTANTS::CARRIAGE2_SPRITE_FILENAME);
+	car2->setPosition(Vec2(240, 260));
+	this->addChild(car2, 1);
+
+	auto car3 = CCarriage::Create(CONSTANTS::CARRIAGE3_SPRITE_FILENAME);
+	car3->setPosition(Vec2(400, 260));
+	this->addChild(car3, 1);
+
+	/*auto sequence = new CSequenceOfMine();
 	auto seq = sequence->Create(3);
 
 	int i = 0;
@@ -49,13 +62,14 @@ bool HelloWorld::init()
 	airplane->TestFly(seq);
 
 	this->scheduleUpdate();
-    return true;
+    */
+	return true;
 }
 
 
 void HelloWorld::update(float delta)
 {
-	for (size_t i = 0; i < bombs.size(); ++i)
+	/*for (size_t i = 0; i < bombs.size(); ++i)
 	{
 		if (bombs[i]->isVisible())
 		{
@@ -63,7 +77,7 @@ void HelloWorld::update(float delta)
 		}
 	}
 	auto scene = CMainMenuScene::CreateScene();
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(scene);*/
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)

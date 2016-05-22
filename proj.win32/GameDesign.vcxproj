@@ -144,7 +144,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\AirPLane.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\BackGround.cpp" />
     <ClCompile Include="..\Classes\Bomb.cpp" />
@@ -159,9 +158,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Ship.cpp" />
     <ClCompile Include="..\Classes\StatisticsScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Train.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\AirPLane.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BackGround.h" />
     <ClInclude Include="..\Classes\Bomb.h" />
@@ -177,6 +176,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="main.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="SequenceOfCarriage.h" />
+    <ClInclude Include="Train.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

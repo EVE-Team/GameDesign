@@ -2,7 +2,6 @@
 #include "MainMenuScene.h"
 #include "CSequenceOfMine.h"
 #include "Point.h"
-#include "AirPLane.h"
 #include "Carriage.h"
 
 USING_NS_CC;
@@ -31,17 +30,37 @@ bool HelloWorld::init()
 	auto backGround = CBackGround::Create(CONSTANTS::SEA_SPRITE_FILENAME);
 	this->addChild(backGround, 0);
 
-	auto car1 = CCarriage::Create(CONSTANTS::CARRIAGE1_SPRITE_FILENAME);
-	car1->setPosition(Vec2(80, 260));
-	this->addChild(car1, 1);
+	auto carriage1 = CCarriage::Create(CONSTANTS::CARRIAGE1_SPRITE_FILENAME);
+	carriage1->setPosition(Vec2(60, 280));
+	this->addChild(carriage1, 1);
 
-	auto car2 = CCarriage::Create(CONSTANTS::CARRIAGE2_SPRITE_FILENAME);
-	car2->setPosition(Vec2(240, 260));
-	this->addChild(car2, 1);
+	auto carriage2 = CCarriage::Create(CONSTANTS::CARRIAGE2_SPRITE_FILENAME);
+	carriage2->setPosition(Vec2(180, 280));
+	this->addChild(carriage2, 1);
 
-	auto car3 = CCarriage::Create(CONSTANTS::CARRIAGE3_SPRITE_FILENAME);
-	car3->setPosition(Vec2(400, 260));
-	this->addChild(car3, 1);
+	auto carriage3 = CCarriage::Create(CONSTANTS::CARRIAGE3_SPRITE_FILENAME);
+	carriage3->setPosition(Vec2(300, 280));
+	this->addChild(carriage3, 1);
+
+	auto carriage4 = CCarriage::Create(CONSTANTS::CARRIAGE4_SPRITE_FILENAME);
+	carriage4->setPosition(Vec2(420, 280));
+	this->addChild(carriage4, 1);
+
+	auto carriage5 = CCarriage::Create(CONSTANTS::CARRIAGE5_SPRITE_FILENAME);
+	carriage5->setPosition(Vec2(60, 200));
+	this->addChild(carriage5, 1);
+
+	auto carriage6 = CCarriage::Create(CONSTANTS::CARRIAGE6_SPRITE_FILENAME);
+	carriage6->setPosition(Vec2(180, 200));
+	this->addChild(carriage6, 1);
+
+	auto carriage7 = CCarriage::Create(CONSTANTS::CARRIAGE7_SPRITE_FILENAME);
+	carriage7->setPosition(Vec2(300, 200));
+	this->addChild(carriage7, 1);
+
+	auto carriage8 = CCarriage::Create(CONSTANTS::CARRIAGE8_SPRITE_FILENAME);
+	carriage8->setPosition(Vec2(420, 200));
+	this->addChild(carriage8, 1);
 
 	/*auto sequence = new CSequenceOfMine();
 	auto seq = sequence->Create(3);

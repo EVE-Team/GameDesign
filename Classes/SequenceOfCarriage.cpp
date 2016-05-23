@@ -39,7 +39,7 @@ vector<int> CSequenceOfCarriage::Create(const int count)
 	while (m_points.size() != count)
 	{
 		int currRandom = rand() % 8 + 1;
-		if (currRandom != 2 || currRandom != 8)
+		if (currRandom != 2 && currRandom != 8)
 		{
 			m_points.push_back(currRandom);
 		}

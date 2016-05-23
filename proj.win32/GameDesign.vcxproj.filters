@@ -48,17 +48,11 @@
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Bomb.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Constants.cpp">
       <Filter>src\Constants</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\json11.cpp">
       <Filter>src\JSONlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\CSequenceOfMine.cpp">
-      <Filter>src\Objects</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Carriage.cpp">
       <Filter>src\Objects</Filter>
@@ -93,9 +87,6 @@
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Bomb.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Point.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
@@ -104,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\json11.hpp">
       <Filter>src\JSONlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\CSequenceOfMine.h">
-      <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Carriage.h">
       <Filter>src\Objects</Filter>

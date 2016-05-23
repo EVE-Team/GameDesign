@@ -1,6 +1,5 @@
 #include "HelloWorldScene.h"
 #include "MainMenuScene.h"
-#include "CSequenceOfMine.h"
 #include "SequenceOfCarriage.h"
 #include "Point.h"
 #include "Carriage.h"
@@ -41,7 +40,7 @@ bool HelloWorld::init()
 	Size carriageSize;
 
 	auto carriage1 = CCarriage::Create(CONSTANTS::CARRIAGE1_SPRITE_FILENAME);
-	carriage1->setPosition(Vec2(60, 280));
+	carriage1->setPosition(Vec2(60, 165));
 	//carriage1->setAnchorPoint(Vec2(0, 0));
 	carriage1->setTag(1);
 	carriageSize = carriage1->getContentSize();
@@ -53,12 +52,12 @@ bool HelloWorld::init()
 	this->addChild(carriage2, 1);*/
 
 	auto carriage3 = CCarriage::Create(CONSTANTS::CARRIAGE3_SPRITE_FILENAME);
-	carriage3->setPosition(Vec2(300, 280));
+	carriage3->setPosition(Vec2(300, 165));
 	carriage3->setTag(3);
 	this->addChild(carriage3, 1);
 
 	auto carriage4 = CCarriage::Create(CONSTANTS::CARRIAGE4_SPRITE_FILENAME);
-	carriage4->setPosition(Vec2(420, 280));
+	carriage4->setPosition(Vec2(420, 165));
 	carriage4->setTag(4);
 	this->addChild(carriage4, 1);
 
@@ -73,7 +72,7 @@ bool HelloWorld::init()
 	this->addChild(carriage6, 1);
 
 	auto carriage7 = CCarriage::Create(CONSTANTS::CARRIAGE7_SPRITE_FILENAME);
-	carriage7->setPosition(Vec2(300, 200));
+	carriage7->setPosition(Vec2(180, 165));
 	carriage7->setTag(7);
 	this->addChild(carriage7, 1);
 
@@ -87,6 +86,8 @@ bool HelloWorld::init()
 	Size trainSize = train->getContentSize();
 	train->setPosition(Vec2(0 - trainSize.width, 0));
 
+	
+
 	auto move = MoveTo::create(8.0, Vec2(600, 50));
 
 	auto seq = &CSequenceOfCarriage::CSequenceOfCarriage();
@@ -95,14 +96,14 @@ bool HelloWorld::init()
 	int shift = 10;
 	int startPosition = 0 - trainSize.width - shift;
 
-	auto carriageMove = MoveTo::create(8.0, Vec2(1200, 50));
+	carriageMove = MoveTo::create(8.0, Vec2(1200, 50));
 	
-	auto a = CRailTransport::create();
-	a->setPosition(Vec2(0, 50));
+	a = CRailTransport::create();
+	a->setPosition(Vec2(0, 45));
 	this->addChild(a, 20);
 	a->addChild(train, 1);
 
-	for (int i = 0; i < vec.size(); ++i)
+	for (size_t i = 0; i < vec.size(); ++i)
 	{
 		startPosition -= (carriageSize.width - 10);
 		auto newCarriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(vec[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
@@ -117,35 +118,9 @@ bool HelloWorld::init()
 	}
 	a->runAction(carriageMove);
 	this->scheduleUpdate();
+	
 
-	auto popLast = ui::Button::create();
-	popLast->setTitleText("Pop last");
-	popLast->setColor(Color3B::YELLOW);
-	popLast->setTitleFontSize(30);
-	popLast->setTitleFontName(CONSTANTS::FONT_NAME);
-	popLast->setPosition(Vec2(50, 50));
-	popLast->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
-		switch (type)
-		{
-		case ui::Widget::TouchEventType::BEGAN:
-		{
-			vector<CCarriage*> wag = GetWagons();
-			if (wag.size())
-			{
-				auto car = wag.back();
-				wag.pop_back();
-				SetWagons(wag);
-				this->removeChildByTag(car->getTag(), true);
-			}
-		}
-			break;
-		case ui::Widget::TouchEventType::ENDED:
-			break;
-		default:
-			break;
-		}
-	});
-	this->addChild(popLast);
+	
 
 	return true;
 }
@@ -194,6 +169,46 @@ void HelloWorld::update(float delta)
 	}
 	auto scene = CMainMenuScene::CreateScene();
 	Director::getInstance()->replaceScene(scene);*/
+
+	if ((a->getPositionX() > 1000) && (this->tFlag))
+	{
+		auto popLast = ui::Button::create();
+		popLast->setTitleText("Pop last");
+		popLast->setColor(Color3B::YELLOW);
+		popLast->setTitleFontSize(30);
+		popLast->setTitleFontName(CONSTANTS::FONT_NAME);
+		popLast->setPosition(Vec2(50, 50));
+		popLast->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
+			switch (type)
+			{
+			case ui::Widget::TouchEventType::BEGAN:
+			{
+				vector<CCarriage*> wag = GetWagons();
+				if (wag.size())
+				{
+					auto car = wag.back();
+					wag.pop_back();
+					SetWagons(wag);
+					this->removeChildByTag(car->getTag(), true);
+				}
+			}
+				break;
+			case ui::Widget::TouchEventType::ENDED:
+				break;
+			default:
+				break;
+			}
+		});
+		this->addChild(popLast, 100);
+
+		auto train1 = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
+		train1->setAnchorPoint(Vec2(0, 0));
+		train1->setPosition(Vec2(310, 45));
+		this->addChild(train1, 100);
+
+		tFlag = false;
+
+	}
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)

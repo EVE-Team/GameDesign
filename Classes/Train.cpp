@@ -84,7 +84,7 @@ void CTrain::TouchEvent(Touch* touch)
 
 	for (size_t i = 0; i < basicWagons.size(); ++i)
 	{
-		if (basicWagons[i]->getTag() != wagons[i]->getTag())
+		if (basicWagons[i]->getTag() + 10 != wagons[i]->getTag())
 		{
 			return;
 		}

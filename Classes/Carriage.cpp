@@ -81,7 +81,7 @@ void CCarriage::TouchEvent(Touch* touch)
 	auto newSprite = CCarriage::Create(m_spriteFileName);
 	newSprite->setPosition(Vec2(400, 50));
 	newSprite->setAnchorPoint(Vec2(0, 0));
-	newSprite->setTag(this->getTag());
+	newSprite->setTag(this->getTag()+10);
 
 	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
 	vector<CCarriage*> wagons = scene->GetWagons();

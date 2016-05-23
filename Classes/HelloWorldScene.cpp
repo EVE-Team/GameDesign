@@ -6,6 +6,7 @@
 #include "Carriage.h"
 #include "Train.h"
 #include <json11.hpp>
+#include "ui\CocosGUI.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
 
 USING_NS_CC;
@@ -90,7 +91,7 @@ bool HelloWorld::init()
 	//train->runAction(move);
 
 	auto seq = &CSequenceOfCarriage::CSequenceOfCarriage();
-	auto vec = seq->Create(5);
+	auto vec = seq->Create(3);
 
 	int shift = 10;
 	int startPosition = 0 - trainSize.width - shift;
@@ -112,6 +113,36 @@ bool HelloWorld::init()
 	this->scheduleUpdate();
 
 	train->setPosition(Vec2(300, 50));
+
+	auto popLast = ui::Button::create();
+	popLast->setTitleText("Pop last");
+	popLast->setColor(Color3B::YELLOW);
+	popLast->setTitleFontSize(30);
+	popLast->setTitleFontName(CONSTANTS::FONT_NAME);
+	popLast->setPosition(Vec2(50, 50));
+	popLast->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+		{
+			vector<CCarriage*> wag = GetWagons();
+			if (wag.size())
+			{
+				auto car = wag.back();
+				wag.pop_back();
+				SetWagons(wag);
+				this->removeChildByTag(car->getTag(), true);
+			}
+		}
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			break;
+		default:
+			break;
+		}
+	});
+	this->addChild(popLast);
+
 	return true;
 }
 

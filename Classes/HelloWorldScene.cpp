@@ -42,15 +42,15 @@ bool HelloWorld::init()
 
 	auto carriage1 = CCarriage::Create(CONSTANTS::CARRIAGE1_SPRITE_FILENAME);
 	carriage1->setPosition(Vec2(60, 280));
-	carriage1->setAnchorPoint(Vec2(0, 0));
+	//carriage1->setAnchorPoint(Vec2(0, 0));
 	carriage1->setTag(1);
 	carriageSize = carriage1->getContentSize();
 	this->addChild(carriage1, 1);
 
-	auto carriage2 = CCarriage::Create(CONSTANTS::CARRIAGE2_SPRITE_FILENAME);
+	/*auto carriage2 = CCarriage::Create(CONSTANTS::CARRIAGE2_SPRITE_FILENAME);
 	carriage2->setPosition(Vec2(180, 280));
 	carriage2->setTag(2);
-	this->addChild(carriage2, 1);
+	this->addChild(carriage2, 1);*/
 
 	auto carriage3 = CCarriage::Create(CONSTANTS::CARRIAGE3_SPRITE_FILENAME);
 	carriage3->setPosition(Vec2(300, 280));
@@ -77,10 +77,10 @@ bool HelloWorld::init()
 	carriage7->setTag(7);
 	this->addChild(carriage7, 1);
 
-	auto carriage8 = CCarriage::Create(CONSTANTS::CARRIAGE8_SPRITE_FILENAME);
+	/*auto carriage8 = CCarriage::Create(CONSTANTS::CARRIAGE8_SPRITE_FILENAME);
 	carriage8->setPosition(Vec2(420, 200));
 	carriage8->setTag(8);
-	this->addChild(carriage8, 1);
+	this->addChild(carriage8, 1);*/
 
 	auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
 	train->setAnchorPoint(Vec2(0, 0));
@@ -180,6 +180,8 @@ void HelloWorld::SetWagons(vector<CCarriage*> wagons)
 {
 	this->m_toFill = wagons;
 }
+
+
 
 void HelloWorld::update(float delta)
 {

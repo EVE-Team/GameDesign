@@ -12,11 +12,11 @@ public:
 	CSequenceOfCarriage();
 	~CSequenceOfCarriage();
 
-	vector<MyPoint*> Create(const int count);
+	vector<int> Create(const int count);
 	void FillBasicPoints();
 
 private:
-	vector<MyPoint*> m_points;
+	vector<int> m_points;
 	vector<MyPoint*> m_basicPoints;
 };
 

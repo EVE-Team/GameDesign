@@ -11,7 +11,7 @@ using namespace json11;
 
 CSequenceOfCarriage::CSequenceOfCarriage()
 {
-	FillBasicPoints();
+	//FillBasicPoints();
 }
 
 CSequenceOfCarriage::~CSequenceOfCarriage()
@@ -34,12 +34,12 @@ void CSequenceOfCarriage::FillBasicPoints()
 	}
 }
 
-vector<MyPoint*> CSequenceOfCarriage::Create(const int count)
+vector<int> CSequenceOfCarriage::Create(const int count)
 {
 	while (m_points.size() != count)
 	{
-		int currRandom = rand() % 10;
-		m_points.push_back(m_basicPoints[currRandom]);
+		int currRandom = rand() % 8 + 1;
+		m_points.push_back(currRandom);
 	}
 
 	return m_points;

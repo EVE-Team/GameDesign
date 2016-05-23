@@ -155,10 +155,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\CSequenceOfMine.cpp" />
     <ClCompile Include="..\Classes\SequenceOfCarriage.cpp" />
-    <ClCompile Include="..\Classes\Ship.cpp" />
     <ClCompile Include="..\Classes\StatisticsScene.cpp" />
+    <ClCompile Include="..\Classes\Train.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Train.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -171,12 +170,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\json11.hpp" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
     <ClInclude Include="..\Classes\CSequenceOfMine.h" />
-    <ClInclude Include="..\Classes\Ship.h" />
+    <ClInclude Include="..\Classes\SequenceOfCarriage.h" />
     <ClInclude Include="..\Classes\StatisticsScene.h" />
+    <ClInclude Include="..\Classes\Train.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Point.h" />
-    <ClInclude Include="SequenceOfCarriage.h" />
-    <ClInclude Include="Train.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

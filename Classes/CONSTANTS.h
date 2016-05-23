@@ -31,6 +31,8 @@ namespace CONSTANTS
 	static const std::string CARRIAGE6_SPRITE_FILENAME = "carriage6.png";
 	static const std::string CARRIAGE7_SPRITE_FILENAME = "carriage7.png";
 	static const std::string CARRIAGE8_SPRITE_FILENAME = "carriage8.png";
+	static const std::string CARRIAGE_SPRITE_FILENAME = "carriage";
+	static const std::string CARRIAGE_FILENAME_RESOLUTION = ".png";
 
 	namespace BASIC_POINTS
 	{

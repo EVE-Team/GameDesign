@@ -51,9 +51,6 @@
     <ClCompile Include="..\Classes\Bomb.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Ship.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Constants.cpp">
       <Filter>src\Constants</Filter>
     </ClCompile>
@@ -69,7 +66,7 @@
     <ClCompile Include="..\Classes\SequenceOfCarriage.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Train.cpp">
+    <ClCompile Include="..\Classes\Train.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,9 +98,6 @@
     <ClInclude Include="Point.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Ship.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Constants.h">
       <Filter>src\Constants</Filter>
     </ClInclude>
@@ -113,13 +107,13 @@
     <ClInclude Include="..\Classes\CSequenceOfMine.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="SequenceOfCarriage.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Carriage.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Train.h">
+    <ClInclude Include="..\Classes\Train.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SequenceOfCarriage.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

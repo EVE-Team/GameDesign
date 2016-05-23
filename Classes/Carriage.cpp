@@ -78,9 +78,15 @@ void CCarriage::SetContactListener()
 
 void CCarriage::TouchEvent(Touch* touch)
 {
-	//this->setVisible(false);
 	auto newSprite = CCarriage::Create(m_spriteFileName);
-	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
 	newSprite->setPosition(Vec2(400, 50));
+	newSprite->setAnchorPoint(Vec2(0, 0));
+	newSprite->setTag(this->getTag());
+
+	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
+	vector<CCarriage*> wagons = scene->GetWagons();
+	wagons.push_back(newSprite);
+
 	scene->addChild(newSprite, 1);
+	scene->SetWagons(wagons);
 }

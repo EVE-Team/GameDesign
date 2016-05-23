@@ -4,6 +4,8 @@
 #include "Bomb.h"
 #include "BackGround.h"
 #include "Constants.h"
+#include "Carriage.h"
+#include "Point.h"
 
 
 class HelloWorld : public cocos2d::Layer
@@ -15,9 +17,16 @@ public:
 	void update(float delta);
     
     void menuCloseCallback(cocos2d::Ref* pSender);
+	void FillBasicPoints();
+	std::vector<CCarriage*> GetWagons();
+	std::vector<CCarriage*> GetBasicWagons();
+	void SetWagons(std::vector<CCarriage*> wagons);
+
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 private:
-	std::vector<CBomb*> bombs;
+	std::vector<CCarriage*> m_toFill;
+	std::vector<MyPoint*> m_basicPoints;
+	std::vector<CCarriage*> m_wagons;
 };

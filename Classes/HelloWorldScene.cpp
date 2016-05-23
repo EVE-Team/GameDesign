@@ -8,6 +8,7 @@
 #include <json11.hpp>
 #include "ui\CocosGUI.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
+#include "proj.win32\RailTransport.h"
 
 USING_NS_CC;
 
@@ -96,20 +97,26 @@ bool HelloWorld::init()
 	int shift = 10;
 	int startPosition = 0 - trainSize.width - shift;
 
+	auto carriageMove = MoveTo::create(8.0, Vec2(600, 50));
+	
+	auto a = CRailTransport::create();
+	a->setPosition(Vec2(0, 50));
+	this->addChild(a, 20);
+
 	for (int i = 0; i < vec.size(); ++i)
 	{
-		startPosition -= carriageSize.width;
+		startPosition -= (carriageSize.width - 10);
 		auto newCarriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(vec[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
 		newCarriage->setAnchorPoint(Vec2(0, 0));
-		newCarriage->setPosition(Vec2(startPosition, 50));
+		newCarriage->setPosition(Vec2(startPosition, 0));
 		newCarriage->setTag(vec[i]);
 		startPosition -= shift;
-		auto carriageMove = MoveTo::create(8.0, Vec2(600, 50));
-		newCarriage->runAction(carriageMove);
-		this->addChild(newCarriage, 1);
+		
+		a->addChild(newCarriage, 1);
+		//this->addChild(newCarriage, 1);
 		m_wagons.push_back(newCarriage);
 	}
-
+	a->runAction(carriageMove);
 	this->scheduleUpdate();
 
 	train->setPosition(Vec2(300, 50));

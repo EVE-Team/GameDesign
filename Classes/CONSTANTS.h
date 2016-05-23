@@ -4,7 +4,7 @@
 namespace CONSTANTS
 {
 	static const std::string FONT_NAME = "fonts/Marker Felt.ttf";
-	static const std::string BACKGROUND_FILENAME = "BackGround.jpg";
+	static const std::string BACKGROUND_FILENAME = "trainStation.png";
 	static const std::string SPLASH_BACKGROUND_FILENAME = "SplashBackGround.jpg";
 	static const std::string FIRST_ACTION = "Let's Play! Touch the screen!";
 	static const std::string GAME_NAME = "Minehunter";
@@ -18,7 +18,7 @@ namespace CONSTANTS
 	static const std::string EXIT_CAPTION = "Exit";
 	static const std::string BACK_CAPTION = "Back";
 	static const std::string MINE_SPRITE_FILENAME = "mine1.png";
-	static const std::string SEA_SPRITE_FILENAME = "water_texture.jpg";
+	static const std::string SEA_SPRITE_FILENAME = "trainStation.png";
 	static const std::string SHIP_SPRITE_FILENAME = "ship.png";
 	static const std::string AIRPLANE_SPRITE_FILENAME = "plane.png";
 

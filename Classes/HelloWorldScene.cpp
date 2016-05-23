@@ -85,11 +85,9 @@ bool HelloWorld::init()
 	auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
 	train->setAnchorPoint(Vec2(0, 0));
 	Size trainSize = train->getContentSize();
-	train->setPosition(Vec2(0 - trainSize.width, 50));
-	this->addChild(train, 1);
+	train->setPosition(Vec2(0 - trainSize.width, 0));
 
 	auto move = MoveTo::create(8.0, Vec2(600, 50));
-	//train->runAction(move);
 
 	auto seq = &CSequenceOfCarriage::CSequenceOfCarriage();
 	auto vec = seq->Create(3);
@@ -97,11 +95,12 @@ bool HelloWorld::init()
 	int shift = 10;
 	int startPosition = 0 - trainSize.width - shift;
 
-	auto carriageMove = MoveTo::create(8.0, Vec2(600, 50));
+	auto carriageMove = MoveTo::create(8.0, Vec2(1200, 50));
 	
 	auto a = CRailTransport::create();
 	a->setPosition(Vec2(0, 50));
 	this->addChild(a, 20);
+	a->addChild(train, 1);
 
 	for (int i = 0; i < vec.size(); ++i)
 	{
@@ -118,8 +117,6 @@ bool HelloWorld::init()
 	}
 	a->runAction(carriageMove);
 	this->scheduleUpdate();
-
-	train->setPosition(Vec2(300, 50));
 
 	auto popLast = ui::Button::create();
 	popLast->setTitleText("Pop last");

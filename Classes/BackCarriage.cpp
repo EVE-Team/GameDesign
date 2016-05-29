@@ -1,47 +1,47 @@
-#include "Carriage.h"
+#include "BackCarriage.h"
 #include "cocos2d.h"
 #include "string"
 #include "HelloWorldScene.h"
-#include "BackCarriage.h"
 
 USING_NS_CC;
 
 using namespace std;
 using namespace cocos2d;
 
-CCarriage::CCarriage(const string &fileName)
+BackCarriage::BackCarriage(const string &fileName)
 	: m_spriteFileName(fileName)
 {
 }
 
-CCarriage::~CCarriage()
+
+BackCarriage::~BackCarriage()
 {
 }
 
-CCarriage* CCarriage::Create(const string &fileName)
+BackCarriage* BackCarriage::Create(const string &fileName)
 {
-	auto enemySprite = new (nothrow)CCarriage(fileName);
-	if (enemySprite && enemySprite->initWithFile(fileName))
+	auto carriageSprite = new (nothrow)BackCarriage(fileName);
+	if (carriageSprite && carriageSprite->initWithFile(fileName))
 	{
-		if (!enemySprite->Init(enemySprite))
+		if (!carriageSprite->Init(carriageSprite))
 		{
-			CC_SAFE_DELETE(enemySprite);
+			CC_SAFE_DELETE(carriageSprite);
 			return nullptr;
 		}
 		else
 		{
-			enemySprite->autorelease();
-			return enemySprite;
+			carriageSprite->autorelease();
+			return carriageSprite;
 		}
 	}
 	else
 	{
-		CC_SAFE_DELETE(enemySprite);
+		CC_SAFE_DELETE(carriageSprite);
 		return nullptr;
 	}
 }
 
-bool CCarriage::Init(Sprite *sprite)
+bool BackCarriage::Init(Sprite *sprite)
 {
 	if (sprite)
 	{
@@ -54,7 +54,7 @@ bool CCarriage::Init(Sprite *sprite)
 	}
 }
 
-void CCarriage::SetContactListener()
+void BackCarriage::SetContactListener()
 {
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->setSwallowTouches(true);
@@ -77,19 +77,18 @@ void CCarriage::SetContactListener()
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
-void CCarriage::TouchEvent(Touch* touch)
+void BackCarriage::TouchEvent(Touch* touch)
 {
-	auto newSprite = BackCarriage::Create(m_spriteFileName);
 	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
-	scene->shift += newSprite->getContentSize().width;
+	scene->shift -= this->getContentSize().width;
 	int shift = (scene->shift);
-	newSprite->setPosition(Vec2(310 - shift, 45));
-	newSprite->setAnchorPoint(Vec2(0, 0));
-	newSprite->setTag(this->getTag()+10);
 
-	vector<BackCarriage*> wagons = scene->GetWagons();
-	wagons.push_back(newSprite);
-
-	scene->addChild(newSprite, 1);
-	scene->SetWagons(wagons);
+	vector<BackCarriage*> wag = scene->GetWagons();
+	if (wag.size())
+	{
+		auto car = wag.back();
+		wag.pop_back();
+		scene->SetWagons(wag);
+		scene->removeChildByTag(car->getTag(), true);
+	}
 }

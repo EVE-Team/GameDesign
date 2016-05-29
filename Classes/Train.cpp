@@ -80,7 +80,7 @@ void CTrain::SetContactListener()
 void CTrain::TouchEvent(Touch* touch)
 {
 	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
-	vector<CCarriage*> wagons = scene->GetWagons();
+	vector<BackCarriage*> wagons = scene->GetWagons();
 	vector<CCarriage*> basicWagons = scene->GetBasicWagons();
 	bool right = true;
 	for (size_t i = 0; i < basicWagons.size(); ++i)

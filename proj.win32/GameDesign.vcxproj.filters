@@ -64,6 +64,9 @@
       <Filter>src\Objects</Filter>
     </ClCompile>
     <ClCompile Include="RailTransport.cpp" />
+    <ClCompile Include="..\Classes\BackCarriage.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -106,6 +109,9 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="RailTransport.h" />
+    <ClInclude Include="..\Classes\BackCarriage.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

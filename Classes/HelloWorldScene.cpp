@@ -26,60 +26,30 @@ Scene* HelloWorld::createScene()
 
 bool HelloWorld::init()
 {
-    if ( !Layer::init() )
-    {
-        return false;
-    }
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	m_lifes = 3;
+	FillBasicPoints();
+
+	if (!Layer::init())
+	{
+		return false;
+	}
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	auto backGround = CBackGround::Create(CONSTANTS::SEA_SPRITE_FILENAME);
 	this->addChild(backGround, 0);
 
 	Size carriageSize;
 
-	auto carriage1 = CCarriage::Create(CONSTANTS::CARRIAGE1_SPRITE_FILENAME);
-	carriage1->setPosition(Vec2(60, 165));
-	//carriage1->setAnchorPoint(Vec2(0, 0));
-	carriage1->setTag(1);
-	carriageSize = carriage1->getContentSize();
-	this->addChild(carriage1, 1);
-
-	/*auto carriage2 = CCarriage::Create(CONSTANTS::CARRIAGE2_SPRITE_FILENAME);
-	carriage2->setPosition(Vec2(180, 280));
-	carriage2->setTag(2);
-	this->addChild(carriage2, 1);*/
-
-	auto carriage3 = CCarriage::Create(CONSTANTS::CARRIAGE3_SPRITE_FILENAME);
-	carriage3->setPosition(Vec2(300, 165));
-	carriage3->setTag(3);
-	this->addChild(carriage3, 1);
-
-	auto carriage4 = CCarriage::Create(CONSTANTS::CARRIAGE4_SPRITE_FILENAME);
-	carriage4->setPosition(Vec2(420, 165));
-	carriage4->setTag(4);
-	this->addChild(carriage4, 1);
-
-	auto carriage5 = CCarriage::Create(CONSTANTS::CARRIAGE5_SPRITE_FILENAME);
-	carriage5->setPosition(Vec2(60, 200));
-	carriage5->setTag(5);
-	this->addChild(carriage5, 1);
-
-	auto carriage6 = CCarriage::Create(CONSTANTS::CARRIAGE6_SPRITE_FILENAME);
-	carriage6->setPosition(Vec2(180, 200));
-	carriage6->setTag(6);
-	this->addChild(carriage6, 1);
-
-	auto carriage7 = CCarriage::Create(CONSTANTS::CARRIAGE7_SPRITE_FILENAME);
-	carriage7->setPosition(Vec2(180, 165));
-	carriage7->setTag(7);
-	this->addChild(carriage7, 1);
-
-	/*auto carriage8 = CCarriage::Create(CONSTANTS::CARRIAGE8_SPRITE_FILENAME);
-	carriage8->setPosition(Vec2(420, 200));
-	carriage8->setTag(8);
-	this->addChild(carriage8, 1);*/
+	for (size_t i = 1; i < 9; ++i)
+	{
+		auto carriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(i) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
+		carriage->setPosition(Vec2(m_basicPoints[i-1]->x, m_basicPoints[i-1]->y));
+		carriage->setTag(i);
+		carriageSize = carriage->getContentSize();
+		this->addChild(carriage, 1);
+	}
 
 	auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
 	train->setAnchorPoint(Vec2(0, 0));
@@ -120,7 +90,7 @@ bool HelloWorld::init()
 	this->scheduleUpdate();
 	
 
-	
+	//this->schedule(schedule_selector(HelloWorld::Update));
 
 	return true;
 }
@@ -141,7 +111,7 @@ void HelloWorld::FillBasicPoints()
 	}
 }
 
-vector<CCarriage*> HelloWorld::GetWagons()
+vector<BackCarriage*> HelloWorld::GetWagons()
 {
 	return m_toFill;
 }
@@ -151,25 +121,34 @@ vector<CCarriage*> HelloWorld::GetBasicWagons()
 	return m_wagons;
 }
 
-void HelloWorld::SetWagons(vector<CCarriage*> wagons)
+void HelloWorld::SetWagons(vector<BackCarriage*> wagons)
 {
 	this->m_toFill = wagons;
 }
 
+int HelloWorld::GetLifes()
+{
+	return m_lifes;
+}
 
+void HelloWorld::SetLifes(int lifes)
+{
+	if (m_lifes < 3)
+	{
+		m_lifes += lifes;
+	}
+}
+
+void HelloWorld::Update(float dt)
+{
+	while (m_lifes)
+	{
+
+	}
+}
 
 void HelloWorld::update(float delta)
 {
-	/*for (size_t i = 0; i < bombs.size(); ++i)
-	{
-		if (bombs[i]->isVisible())
-		{
-			return;
-		}
-	}
-	auto scene = CMainMenuScene::CreateScene();
-	Director::getInstance()->replaceScene(scene);*/
-
 	if ((a->getPositionX() > 1000) && (this->tFlag))
 	{
 		auto popLast = ui::Button::create();
@@ -183,14 +162,14 @@ void HelloWorld::update(float delta)
 			{
 			case ui::Widget::TouchEventType::BEGAN:
 			{
-				vector<CCarriage*> wag = GetWagons();
+				/*vector<CCarriage*> wag = GetWagons();
 				if (wag.size())
 				{
 					auto car = wag.back();
 					wag.pop_back();
 					SetWagons(wag);
 					this->removeChildByTag(car->getTag(), true);
-				}
+				}*/
 			}
 				break;
 			case ui::Widget::TouchEventType::ENDED:

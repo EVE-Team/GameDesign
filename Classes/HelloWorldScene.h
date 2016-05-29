@@ -20,7 +20,7 @@ public:
     void menuCloseCallback(cocos2d::Ref* pSender);
 	void FillBasicPoints();
 	std::vector<BackCarriage*> GetWagons();
-	std::vector<CCarriage*> GetBasicWagons();
+	std::vector<Sprite*> GetBasicWagons();
 	void SetWagons(std::vector<BackCarriage*> wagons);
 
 	void Update(float dt);
@@ -32,11 +32,13 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 private:
+	void CreateRailTransport();
 	std::vector<BackCarriage*> m_toFill;
 	std::vector<MyPoint*> m_basicPoints;
-	std::vector<CCarriage*> m_wagons;
+	std::vector<Sprite*> m_wagons;
 	cocos2d::MoveTo* carriageMove;
-	bool tFlag = true;
+	bool IsTrainRunning = false;
+	int trainRunningEndPos = 0;
 	cocos2d::Layer* a;
-	int m_lifes;
+	int m_lifes = 3;
 };

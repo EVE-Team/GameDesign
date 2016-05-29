@@ -81,33 +81,31 @@ void CTrain::TouchEvent(Touch* touch)
 {
 	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
 	vector<BackCarriage*> wagons = scene->GetWagons();
-	vector<CCarriage*> basicWagons = scene->GetBasicWagons();
+	vector<Sprite*> basicWagons = scene->GetBasicWagons();
 	bool right = true;
-	for (size_t i = 0; i < basicWagons.size(); ++i)
+	if (basicWagons.size() != wagons.size())
 	{
-		if (basicWagons[i]->getTag() + 10 != wagons[i]->getTag())
-		{
-			right = false;
-			break;
-		}
-	}
-
-	auto popLast = ui::Button::create();
-	string text;
-	if (right)
-	{
-		text = "You win";
+		right = false;
 	}
 	else
 	{
-		text = "You lose";
-	}
+		for (size_t i = 0; i < basicWagons.size(); ++i)
+		{
+			if (basicWagons[i]->getTag()!= wagons[i]->getTag())
+			{
+				right = false;
+				break;
+			}
+		}
+	}	
+
+	auto popLast = ui::Button::create();
+	string text = right ? "You win" :"You lose" ;
 	popLast->setTitleText(text);
 	popLast->setColor(Color3B::YELLOW);
 	popLast->setTitleFontSize(64);
 	popLast->setTitleFontName(CONSTANTS::FONT_NAME);
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	popLast->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
 	popLast->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)

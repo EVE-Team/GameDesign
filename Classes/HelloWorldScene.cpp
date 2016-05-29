@@ -26,7 +26,6 @@ Scene* HelloWorld::createScene()
 
 bool HelloWorld::init()
 {
-	m_lifes = 3;
 	FillBasicPoints();
 
 	if (!Layer::init())
@@ -37,12 +36,12 @@ bool HelloWorld::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	auto backGround = CBackGround::Create(CONSTANTS::SEA_SPRITE_FILENAME);
+	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 
 	Size carriageSize;
 
-	for (size_t i = 1; i < 9; ++i)
+	for (size_t i = 1; i < 7; ++i)
 	{
 		auto carriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(i) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
 		carriage->setPosition(Vec2(m_basicPoints[i-1]->x, m_basicPoints[i-1]->y));
@@ -50,49 +49,44 @@ bool HelloWorld::init()
 		carriageSize = carriage->getContentSize();
 		this->addChild(carriage, 1);
 	}
+	CreateRailTransport();
+
+	this->scheduleUpdate();
+	return true;
+}
+
+void HelloWorld::CreateRailTransport()
+{
+	auto seq = &CSequenceOfCarriage::CSequenceOfCarriage();
+	auto vec = seq->Create(3);
+
+	a = CRailTransport::create();
+	a->setPosition(Vec2(400, CONSTANTS::RAIL_POSITON_Y));
+	this->addChild(a, 20);
 
 	auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
 	train->setAnchorPoint(Vec2(0, 0));
 	Size trainSize = train->getContentSize();
-	train->setPosition(Vec2(0 - trainSize.width, 0));
+	train->setPosition(Vec2(0, 0));
 
-	
-
-	auto move = MoveTo::create(8.0, Vec2(600, 50));
-
-	auto seq = &CSequenceOfCarriage::CSequenceOfCarriage();
-	auto vec = seq->Create(3);
-
-	int shift = 10;
-	int startPosition = 0 - trainSize.width - shift;
-
-	carriageMove = MoveTo::create(8.0, Vec2(1200, 50));
-	
-	a = CRailTransport::create();
-	a->setPosition(Vec2(0, 45));
-	this->addChild(a, 20);
 	a->addChild(train, 1);
 
+	int startPosition = trainSize.width;
 	for (size_t i = 0; i < vec.size(); ++i)
 	{
-		startPosition -= (carriageSize.width - 10);
-		auto newCarriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(vec[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
+		auto newCarriage = Sprite::create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(vec[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
 		newCarriage->setAnchorPoint(Vec2(0, 0));
 		newCarriage->setPosition(Vec2(startPosition, 0));
 		newCarriage->setTag(vec[i]);
-		startPosition -= shift;
-		
 		a->addChild(newCarriage, 1);
-		//this->addChild(newCarriage, 1);
 		m_wagons.push_back(newCarriage);
+		Size carriageSize = newCarriage->getContentSize();
+		startPosition += carriageSize.width;
 	}
+	carriageMove = MoveTo::create(4.0, Vec2(0 - startPosition, CONSTANTS::RAIL_POSITON_Y));
 	a->runAction(carriageMove);
-	this->scheduleUpdate();
-	
-
-	//this->schedule(schedule_selector(HelloWorld::Update));
-
-	return true;
+	this->trainRunningEndPos = -startPosition;
+	this->IsTrainRunning = true;
 }
 
 void HelloWorld::FillBasicPoints()
@@ -116,7 +110,7 @@ vector<BackCarriage*> HelloWorld::GetWagons()
 	return m_toFill;
 }
 
-vector<CCarriage*> HelloWorld::GetBasicWagons()
+vector<Sprite*> HelloWorld::GetBasicWagons()
 {
 	return m_wagons;
 }
@@ -139,54 +133,15 @@ void HelloWorld::SetLifes(int lifes)
 	}
 }
 
-void HelloWorld::Update(float dt)
-{
-	while (m_lifes)
-	{
-
-	}
-}
-
 void HelloWorld::update(float delta)
 {
-	if ((a->getPositionX() > 1000) && (this->tFlag))
-	{
-		auto popLast = ui::Button::create();
-		popLast->setTitleText("Pop last");
-		popLast->setColor(Color3B::YELLOW);
-		popLast->setTitleFontSize(30);
-		popLast->setTitleFontName(CONSTANTS::FONT_NAME);
-		popLast->setPosition(Vec2(50, 50));
-		popLast->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
-			switch (type)
-			{
-			case ui::Widget::TouchEventType::BEGAN:
-			{
-				/*vector<CCarriage*> wag = GetWagons();
-				if (wag.size())
-				{
-					auto car = wag.back();
-					wag.pop_back();
-					SetWagons(wag);
-					this->removeChildByTag(car->getTag(), true);
-				}*/
-			}
-				break;
-			case ui::Widget::TouchEventType::ENDED:
-				break;
-			default:
-				break;
-			}
-		});
-		this->addChild(popLast, 100);
-
-		auto train1 = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
-		train1->setAnchorPoint(Vec2(0, 0));
-		train1->setPosition(Vec2(310, 45));
-		this->addChild(train1, 100);
-
-		tFlag = false;
-
+	if ((a->getPositionX() == this->trainRunningEndPos) && (this->IsTrainRunning))
+	{		
+		auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
+		train->setAnchorPoint(Vec2(0, 0));
+		train->setPosition(Vec2(10, CONSTANTS::RAIL_POSITON_Y));
+		this->addChild(train, 100);
+		IsTrainRunning = false;
 	}
 }
 

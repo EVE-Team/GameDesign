@@ -18,11 +18,9 @@ Scene* CMainMenuScene::CreateScene()
 
 bool CMainMenuScene::Init(Scene *scene)
 {
-	auto backGround = CBackGround::Create(CONSTANTS::SPLASH_BACKGROUND_FILENAME);
+	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
-
 	CreateSceneLabels();
-
 	return true;
 }
 

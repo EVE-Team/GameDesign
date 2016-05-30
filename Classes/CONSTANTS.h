@@ -19,7 +19,7 @@ namespace CONSTANTS
 	static const int NUMBER_OF_CARRIAGE = 6;	
 	static const std::string CARRIAGE_SPRITE_FILENAME = "images\\";
 	static const std::string CARRIAGE_FILENAME_RESOLUTION = ".png";
-
+	extern int len;
 	static const int RAIL_POSITON_Y = 78;
 
 	namespace BASIC_POINTS

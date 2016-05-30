@@ -3,7 +3,7 @@
 #include "string"
 #include "HelloWorldScene.h"
 #include "MainMenuScene.h"
-#include "ui\CocosGUI.h"
+
 
 USING_NS_CC;
 
@@ -79,48 +79,6 @@ void CTrain::SetContactListener()
 
 void CTrain::TouchEvent(Touch* touch)
 {
-	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
-	vector<BackCarriage*> wagons = scene->GetWagons();
-	vector<Sprite*> basicWagons = scene->GetBasicWagons();
-	bool right = true;
-	if (basicWagons.size() != wagons.size())
-	{
-		right = false;
-	}
-	else
-	{
-		for (size_t i = 0; i < basicWagons.size(); ++i)
-		{
-			if (basicWagons[i]->getTag()!= wagons[i]->getTag())
-			{
-				right = false;
-				break;
-			}
-		}
-	}	
-
-	auto popLast = ui::Button::create();
-	string text = right ? "You win" :"You lose" ;
-	popLast->setTitleText(text);
-	popLast->setColor(Color3B::YELLOW);
-	popLast->setTitleFontSize(64);
-	popLast->setTitleFontName(CONSTANTS::FONT_NAME);
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	popLast->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-	popLast->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
-		switch (type)
-		{
-		case ui::Widget::TouchEventType::BEGAN:
-		{
-			auto menuScene = CMainMenuScene::CreateScene();
-			Director::getInstance()->replaceScene(menuScene);
-		}
-			break;
-		case ui::Widget::TouchEventType::ENDED:
-			break;
-		default:
-			break;
-		}
-	});
-	scene->addChild(popLast, 30);
+	auto parent = dynamic_cast<CRailTransport*>(this->getParent());
+	parent->CheckGameState();
 }

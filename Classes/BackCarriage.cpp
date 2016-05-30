@@ -79,16 +79,9 @@ void BackCarriage::SetContactListener()
 
 void BackCarriage::TouchEvent(Touch* touch)
 {
-	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
-	scene->shift -= this->getContentSize().width;
-	int shift = (scene->shift);
-
-	vector<BackCarriage*> wag = scene->GetWagons();
-	if (wag.size())
-	{
-		auto car = wag.back();
-		wag.pop_back();
-		scene->SetWagons(wag);
-		scene->removeChildByTag(car->getTag(), true);
-	}
+	auto parent = dynamic_cast<CRailTransport*>(this->getParent());
+	parent->m_shift -= this->getContentSize().width;
+	int shift = (parent->m_shift);
+	parent->m_userCreatedTrain.pop_back();
+	parent->removeChild(this, false);
 }

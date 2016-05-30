@@ -58,7 +58,16 @@ void HelloWorld::InitBasicObjects()
 		carriage->setPosition(Vec2(basicPoints[i - 1][CONSTANTS::BASIC_POINTS::X].int_value(),
 			basicPoints[i - 1][CONSTANTS::BASIC_POINTS::Y].int_value()));
 		carriage->setTag(i);
+		m_wagons.push_back(carriage);
 		this->addChild(carriage, 1);
+	}
+}
+
+void HelloWorld::SetListenersForWagons()
+{
+	for (auto it : m_wagons)
+	{
+		it->SetContactListener();
 	}
 }
 
@@ -74,4 +83,74 @@ void HelloWorld::SetLifes(int lifes)
 	{
 		m_lifes += lifes;
 	}
+}
+
+void HelloWorld::ShowState(const std::string& text)
+{
+	string title = text;
+	auto gameState = ui::Button::create();
+	gameState->setTitleText(text);
+	gameState->setColor(Color3B::YELLOW);
+	gameState->setTitleFontSize(64);
+	gameState->setTitleFontName(CONSTANTS::FONT_NAME);
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	gameState->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + CONSTANTS::RAIL_POSITON_Y));
+	int length = m_length++;
+	if (text == "You win")
+	{
+		if (CONSTANTS::len < CONSTANTS::MAX_LEN)
+		{
+			title = "Next level";
+			gameState->setTitleText(title);
+			CONSTANTS::state = 2;
+		}
+		else
+		{
+			CONSTANTS::state = 1;
+		}
+	}
+	else
+	{
+		CONSTANTS::state = 3;
+	}
+	if ((CONSTANTS::state == 1) || (CONSTANTS::state == 3))
+	{
+		CONSTANTS::len = 3;
+		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
+			switch (type)
+			{
+			case ui::Widget::TouchEventType::BEGAN:
+			{
+				auto scene = CMainMenuScene::CreateScene();
+				Director::getInstance()->replaceScene(scene);				
+			}
+			break;
+			case ui::Widget::TouchEventType::ENDED:
+				break;
+			default:
+				break;
+			}
+		});
+	}
+	else
+	{
+		CONSTANTS::len++;
+		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
+			switch (type)
+			{
+			case ui::Widget::TouchEventType::BEGAN:
+			{				
+				auto scene = HelloWorld::createScene();
+				Director::getInstance()->replaceScene(scene);
+			}
+			break;
+			case ui::Widget::TouchEventType::ENDED:
+				break;
+			default:
+				break;
+			}
+		});
+	}
+	
+	this->addChild(gameState, 30);
 }

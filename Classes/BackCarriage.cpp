@@ -1,7 +1,5 @@
 #include "BackCarriage.h"
-#include "cocos2d.h"
-#include "string"
-#include "HelloWorldScene.h"
+#include "proj.win32\RailTransport.h"
 
 USING_NS_CC;
 
@@ -82,6 +80,8 @@ void BackCarriage::TouchEvent(Touch* touch)
 	auto parent = dynamic_cast<CRailTransport*>(this->getParent());
 	parent->m_shift -= this->getContentSize().width;
 	int shift = (parent->m_shift);
+	auto remWag = parent->m_wagons.back();
+	parent->m_wagons.pop_back();
 	parent->m_userCreatedTrain.pop_back();
-	parent->removeChild(this, false);
+	parent->removeChild(remWag, false);
 }

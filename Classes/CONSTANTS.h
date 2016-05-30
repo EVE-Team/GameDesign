@@ -13,13 +13,16 @@ namespace CONSTANTS
 	static const std::string START_GAME_CAPTION = "Start";
 	static const std::string STAT_CAPTION = "Statistics";
 	static const std::string EXIT_CAPTION = "Exit";
-	static const std::string BACK_CAPTION = "Back";	;
+	static const std::string BACK_CAPTION = "Back";
+	static const int MAX_LEN = 9;
 
 	static const std::string TRAIN_SPRITE_FILENAME = "images\\train.png";
 	static const int NUMBER_OF_CARRIAGE = 6;	
 	static const std::string CARRIAGE_SPRITE_FILENAME = "images\\";
 	static const std::string CARRIAGE_FILENAME_RESOLUTION = ".png";
 	extern int len;
+	extern int state;
+	extern int score;
 	static const int RAIL_POSITON_Y = 78;
 
 	namespace BASIC_POINTS

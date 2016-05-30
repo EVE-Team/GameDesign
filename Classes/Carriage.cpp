@@ -1,10 +1,5 @@
 #include "Carriage.h"
-#include "cocos2d.h"
-#include "string"
 #include "HelloWorldScene.h"
-#include "BackCarriage.h"
-
-USING_NS_CC;
 
 using namespace std;
 using namespace cocos2d;
@@ -45,7 +40,7 @@ bool CCarriage::Init(Sprite *sprite)
 {
 	if (sprite)
 	{
-		SetContactListener();
+		//SetContactListener();
 		return true;
 	}
 	else

@@ -17,10 +17,11 @@ public:
 	virtual bool init();
 	void update(float delta);
 	void CheckGameState();
-	void ShowState(const std::string& text);
+	//void ShowState(const std::string& text);
 
 	std::vector<int> m_levelCreatedTrain;
 	std::vector<int> m_userCreatedTrain;
+	std::vector<BackCarriage*> m_wagons;
 	void AddWagon(const std::string& filename, int tag);
 	int m_shift = 0;
 private:

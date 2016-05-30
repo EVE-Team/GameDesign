@@ -1,6 +1,7 @@
 #include "StatisticsScene.h"
 #include "BackGround.h"
 #include "Constants.h"
+#include "MainMenuScene.h"
 
 Scene* CStatisticsScene::CreateScene()
 {
@@ -41,8 +42,8 @@ void CStatisticsScene::SetEventListener()
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->setSwallowTouches(true);
 	listener->onTouchBegan = [](Touch* touch, Event* event){
-		auto target = static_cast<Label*>(event->getCurrentTarget());
-		target->setVisible(false);
+		auto scene = CMainMenuScene::CreateScene();
+		Director::getInstance()->replaceScene(scene);
 		return true;
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);

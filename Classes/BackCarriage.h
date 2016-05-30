@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "string"
+#include "HelloWorldScene.h"
 
 using namespace std;
 using namespace cocos2d;

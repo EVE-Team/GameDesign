@@ -69,7 +69,7 @@ void CRailTransport::BeginNewLevel(int length)
 		Size carriageSize = newCarriage->getContentSize();
 		startPosition += carriageSize.width;
 	}
-	auto carriageMove = MoveTo::create(4.0, Vec2(0 - startPosition, CONSTANTS::RAIL_POSITON_Y));
+	auto carriageMove = MoveTo::create(1 + 2 * length, Vec2(0 - startPosition, CONSTANTS::RAIL_POSITON_Y));
 	this->runAction(carriageMove);
 	m_trainRunningEndPos = -startPosition;
 	m_isTrainRunning = true;
@@ -86,6 +86,7 @@ void CRailTransport::update(float delta)
 		train->setAnchorPoint(Vec2(0, 0));
 		train->setPosition(Vec2(10,0));
 		this->addChild(train);
+		dynamic_cast<HelloWorld*>(this->getParent())->SetListenersForWagons();
 		m_isTrainRunning = false;
 	}
 }
@@ -98,15 +99,18 @@ void CRailTransport::AddWagon(const string& filename, int tag)
 	newSprite->setAnchorPoint(Vec2(0, 0));
 	newSprite->setTag(tag);
 	m_userCreatedTrain.push_back(tag);
+	m_wagons.push_back(newSprite);
 	this->addChild(newSprite);
 }
 
 void CRailTransport::CheckGameState()
 {
 	bool right = true;
+	int shift = -100;
 	if (m_userCreatedTrain.size() != m_levelCreatedTrain.size())
 	{
 		right = false;
+		shift = 100;
 	}
 	else
 	{
@@ -117,39 +121,13 @@ void CRailTransport::CheckGameState()
 			if (first != second)
 			{
 				right = false;
+				shift = 100;
 				break;
 			}
 		}
 	}
+	auto move = MoveBy::create(1, Vec2(shift, 0));
+	this->runAction(RepeatForever::create(move));
 	string text = right ? "You win" : "You lose";
-	ShowState(text);
-}
-
-void CRailTransport::ShowState(const std::string& text)
-{
-	auto gameState = ui::Button::create();
-	gameState->setTitleText(text);
-	gameState->setColor(Color3B::YELLOW);
-	gameState->setTitleFontSize(64);
-	gameState->setTitleFontName(CONSTANTS::FONT_NAME);
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	gameState->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	int length = m_length++;
-	gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
-		switch (type)
-		{
-		case ui::Widget::TouchEventType::BEGAN:
-		{
-			auto scene = HelloWorld::createScene();
-			CONSTANTS::len++;
-			Director::getInstance()->replaceScene(scene);
-		}
-		break;
-		case ui::Widget::TouchEventType::ENDED:
-			break;
-		default:
-			break;
-		}
-	});
-	this->addChild(gameState, 30);
+	dynamic_cast<HelloWorld*>(this->getParent())->ShowState(text);
 }

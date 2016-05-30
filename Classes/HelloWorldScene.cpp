@@ -7,6 +7,7 @@
 #include "ui\CocosGUI.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
 #include "proj.win32\RailTransport.h"
+#include "proj.win32\ScoreSaver.h"
 
 
 USING_NS_CC;
@@ -117,6 +118,7 @@ void HelloWorld::ShowState(const std::string& text)
 	int length = m_length++;
 	if (text == "You win")
 	{
+		CONSTANTS::score = CONSTANTS::score +  100 * CONSTANTS::len;
 		if (CONSTANTS::len < CONSTANTS::MAX_LEN)
 		{
 			title = "Next level";
@@ -134,6 +136,10 @@ void HelloWorld::ShowState(const std::string& text)
 		if (CONSTANTS::number_life == 1)
 		{
 			CONSTANTS::state = 3;
+			CScoreSaver saver;
+			saver.SaveScore(flatbuffers::NumToString(CONSTANTS::score));
+			CONSTANTS::score = 0;
+			CONSTANTS::number_life = 3;
 		}
 		else
 		{
@@ -142,7 +148,6 @@ void HelloWorld::ShowState(const std::string& text)
 			CONSTANTS::state = 2;
 			CONSTANTS::number_life--;
 		}
-		
 	}
 	if ((CONSTANTS::state == 1) || (CONSTANTS::state == 3))
 	{

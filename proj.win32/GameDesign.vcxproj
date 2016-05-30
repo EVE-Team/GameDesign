@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Train.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RailTransport.cpp" />
+    <ClCompile Include="ScoreSaver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -175,6 +176,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="main.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RailTransport.h" />
+    <ClInclude Include="ScoreSaver.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

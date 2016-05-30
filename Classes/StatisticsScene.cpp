@@ -2,6 +2,7 @@
 #include "BackGround.h"
 #include "Constants.h"
 #include "MainMenuScene.h"
+#include "proj.win32\ScoreSaver.h"
 
 Scene* CStatisticsScene::CreateScene()
 {
@@ -21,6 +22,16 @@ bool CStatisticsScene::Init(Scene *scene)
 	SetEventListener();
 	CreateSceneLabels();
 
+	CScoreSaver saver;
+	auto scoreList = saver.GetScore();
+	int y = 20;
+	for (auto &it : scoreList)
+	{
+		auto header = Label::createWithTTF(it, CONSTANTS::FONT_NAME,16 );
+		header->setPosition(Vec2(240, 240 - y));
+		y += 20;
+		this->addChild(header, 1);
+	}
 	return true;
 }
 
@@ -33,7 +44,7 @@ void CStatisticsScene::CreateSceneLabels()
 	this->addChild(header, 1);
 
 	auto exitLabel = Label::createWithTTF(CONSTANTS::BACK_CAPTION, CONSTANTS::FONT_NAME, 20);
-	exitLabel->setPosition(Vec2(240, 180));
+	exitLabel->setPosition(Vec2(240, 50));
 	exitLabel->setTag(2);
 	this->addChild(exitLabel, 1);
 }

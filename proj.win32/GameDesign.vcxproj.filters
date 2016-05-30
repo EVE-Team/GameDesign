@@ -67,6 +67,7 @@
     <ClCompile Include="..\Classes\BackCarriage.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreSaver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -112,6 +113,7 @@
     <ClInclude Include="..\Classes\BackCarriage.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreSaver.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

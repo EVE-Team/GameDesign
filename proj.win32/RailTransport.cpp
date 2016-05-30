@@ -129,6 +129,5 @@ void CRailTransport::CheckGameState()
 	auto move = MoveBy::create(1, Vec2(shift, 0));
 	this->runAction(RepeatForever::create(move));
 	string text = right ? "You win" : "You lose";
-	CONSTANTS::score = right ? CONSTANTS::score + 100 * m_length : 0;
 	dynamic_cast<HelloWorld*>(this->getParent())->ShowState(text);
 }

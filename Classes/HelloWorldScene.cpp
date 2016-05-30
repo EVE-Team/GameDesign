@@ -40,6 +40,13 @@ bool HelloWorld::init()
 	m_railTransport = CRailTransport::create();
 	m_railTransport->BeginNewLevel(CONSTANTS::len);
 	this->addChild(m_railTransport);
+
+	auto score = Label::createWithTTF("score: " + flatbuffers::NumToString(CONSTANTS::score), CONSTANTS::FONT_NAME, 16);
+	score->setColor(Color3B::YELLOW);	
+	score->setAnchorPoint(Vec2(0, 0));
+	score->setPosition(Vec2(30, 300));
+	this->addChild(score, 1);
+
 	return true;
 }
 

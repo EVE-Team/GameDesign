@@ -24,6 +24,7 @@ bool CStatisticsScene::Init(Scene *scene)
 	return true;
 }
 
+
 void CStatisticsScene::CreateSceneLabels()
 {
 	auto header = Label::createWithTTF(CONSTANTS::STAT_CAPTION, CONSTANTS::FONT_NAME, 34);

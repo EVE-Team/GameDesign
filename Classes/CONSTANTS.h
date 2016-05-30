@@ -20,9 +20,11 @@ namespace CONSTANTS
 	static const int NUMBER_OF_CARRIAGE = 6;	
 	static const std::string CARRIAGE_SPRITE_FILENAME = "images\\";
 	static const std::string CARRIAGE_FILENAME_RESOLUTION = ".png";
+	static const std::string SCORE_FILENAME = "score.txt";
 	extern int len;
 	extern int state;
 	extern int score;
+	extern int number_life;
 	static const int RAIL_POSITON_Y = 78;
 
 	namespace BASIC_POINTS

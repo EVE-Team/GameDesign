@@ -44,8 +44,20 @@ bool HelloWorld::init()
 	auto score = Label::createWithTTF("score: " + flatbuffers::NumToString(CONSTANTS::score), CONSTANTS::FONT_NAME, 16);
 	score->setColor(Color3B::YELLOW);	
 	score->setAnchorPoint(Vec2(0, 0));
-	score->setPosition(Vec2(30, 300));
+	score->setPosition(Vec2(10, 300));
 	this->addChild(score, 1);
+
+	auto life = Sprite::create("images\\life.png");
+	life->setScale(0.03);
+	life->setAnchorPoint(Vec2(0, 0));
+	life->setPosition(Vec2(90, 305));
+	this->addChild(life, 1);
+
+	auto nLife = Label::createWithTTF(flatbuffers::NumToString(CONSTANTS::number_life), CONSTANTS::FONT_NAME, 16);
+	nLife->setColor(Color3B::YELLOW);
+	nLife->setAnchorPoint(Vec2(0, 0));
+	nLife->setPosition(Vec2(100, 300));
+	this->addChild(nLife, 1);
 
 	return true;
 }
@@ -110,6 +122,7 @@ void HelloWorld::ShowState(const std::string& text)
 			title = "Next level";
 			gameState->setTitleText(title);
 			CONSTANTS::state = 2;
+			CONSTANTS::len++;
 		}
 		else
 		{
@@ -118,7 +131,18 @@ void HelloWorld::ShowState(const std::string& text)
 	}
 	else
 	{
-		CONSTANTS::state = 3;
+		if (CONSTANTS::number_life == 1)
+		{
+			CONSTANTS::state = 3;
+		}
+		else
+		{
+			title = "Try again";
+			gameState->setTitleText(title);
+			CONSTANTS::state = 2;
+			CONSTANTS::number_life--;
+		}
+		
 	}
 	if ((CONSTANTS::state == 1) || (CONSTANTS::state == 3))
 	{
@@ -140,8 +164,7 @@ void HelloWorld::ShowState(const std::string& text)
 		});
 	}
 	else
-	{
-		CONSTANTS::len++;
+	{		
 		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 			switch (type)
 			{

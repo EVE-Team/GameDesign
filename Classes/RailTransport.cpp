@@ -1,4 +1,5 @@
 #include "RailTransport.h"
+#include "..\cocos2d\external\flatbuffers\util.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -35,6 +36,7 @@ bool CRailTransport::init()
 	}
 	this->setPosition(Vec2(400, CONSTANTS::RAIL_POSITON_Y));
 	this->scheduleUpdate();
+	return true;
 }
 
 std::vector<int> CRailTransport::GetRandomArrayOfWagons(const int count)
@@ -61,7 +63,7 @@ void CRailTransport::BeginNewLevel(int length)
 	int startPosition = trainSize.width;
 	for (size_t i = 0; i < m_levelCreatedTrain.size(); ++i)
 	{
-		auto newCarriage = Sprite::create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(m_levelCreatedTrain[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
+		auto newCarriage = Sprite::create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + flatbuffers::NumToString(m_levelCreatedTrain[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
 		newCarriage->setAnchorPoint(Vec2(0, 0));
 		newCarriage->setPosition(Vec2(startPosition, 0));
 		newCarriage->setTag(m_levelCreatedTrain[i]);
@@ -80,11 +82,12 @@ void CRailTransport::update(float delta)
 	if ((this->getPositionX() == this->m_trainRunningEndPos) && (this->m_isTrainRunning))
 	{
 		this->removeAllChildrenWithCleanup(true);
-		this->setPosition(Vec2(0, CONSTANTS::RAIL_POSITON_Y));
+		this->setPosition(Vec2(10, CONSTANTS::RAIL_POSITON_Y));
 		this->scheduleUpdate();
 		auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
 		train->setAnchorPoint(Vec2(0, 0));
-		train->setPosition(Vec2(10,0));
+		train->setPosition(Vec2(0,0));
+		m_shift = train->getContentSize().width;
 		this->addChild(train);
 		dynamic_cast<HelloWorld*>(this->getParent())->SetListenersForWagons();
 		m_isTrainRunning = false;
@@ -93,10 +96,10 @@ void CRailTransport::update(float delta)
 
 void CRailTransport::AddWagon(const string& filename, int tag)
 {
-	auto newSprite = BackCarriage::Create(filename);
-	m_shift += newSprite->getContentSize().width;
-	newSprite->setPosition(Vec2(30 + m_shift,0));
+	auto newSprite = BackCarriage::Create(filename);	
+	newSprite->setPosition(Vec2(m_shift,0));
 	newSprite->setAnchorPoint(Vec2(0, 0));
+	m_shift += newSprite->getContentSize().width;
 	newSprite->setTag(tag);
 	m_userCreatedTrain.push_back(tag);
 	m_wagons.push_back(newSprite);

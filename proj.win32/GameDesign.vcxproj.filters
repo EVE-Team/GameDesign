@@ -45,9 +45,6 @@
     <ClCompile Include="..\Classes\StatisticsScene.cpp">
       <Filter>src\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
-      <Filter>src\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Constants.cpp">
       <Filter>src\Constants</Filter>
     </ClCompile>
@@ -57,17 +54,18 @@
     <ClCompile Include="..\Classes\Carriage.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SequenceOfCarriage.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Train.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="RailTransport.cpp" />
     <ClCompile Include="..\Classes\BackCarriage.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreSaver.cpp" />
+    <ClCompile Include="..\Classes\RailTransport.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScoreSaver.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -88,12 +86,6 @@
     <ClInclude Include="..\Classes\StatisticsScene.h">
       <Filter>src\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
-      <Filter>src\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Constants.h">
       <Filter>src\Constants</Filter>
     </ClInclude>
@@ -106,14 +98,15 @@
     <ClInclude Include="..\Classes\Train.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SequenceOfCarriage.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="RailTransport.h" />
     <ClInclude Include="..\Classes\BackCarriage.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreSaver.h" />
+    <ClInclude Include="..\Classes\RailTransport.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScoreSaver.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

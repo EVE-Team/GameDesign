@@ -1,13 +1,12 @@
 #include "HelloWorldScene.h"
 #include "MainMenuScene.h"
-#include "Point.h"
 #include "Carriage.h"
 #include "Train.h"
 #include <json11.hpp>
 #include "ui\CocosGUI.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
-#include "proj.win32\RailTransport.h"
-#include "proj.win32\ScoreSaver.h"
+#include "RailTransport.h"
+#include "ScoreSaver.h"
 
 
 USING_NS_CC;
@@ -74,7 +73,7 @@ void HelloWorld::InitBasicObjects()
 
 	for (size_t i = 1; i <= CONSTANTS::NUMBER_OF_CARRIAGE; ++i)
 	{
-		auto carriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + to_string(i) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
+		auto carriage = CCarriage::Create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + flatbuffers::NumToString(i) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
 		carriage->setPosition(Vec2(basicPoints[i - 1][CONSTANTS::BASIC_POINTS::X].int_value(),
 			basicPoints[i - 1][CONSTANTS::BASIC_POINTS::Y].int_value()));
 		carriage->setTag(i);
@@ -91,19 +90,6 @@ void HelloWorld::SetListenersForWagons()
 	}
 }
 
-
-int HelloWorld::GetLifes()
-{
-	return m_lifes;
-}
-
-void HelloWorld::SetLifes(int lifes)
-{
-	if (m_lifes < 3)
-	{
-		m_lifes += lifes;
-	}
-}
 
 void HelloWorld::ShowState(const std::string& text)
 {

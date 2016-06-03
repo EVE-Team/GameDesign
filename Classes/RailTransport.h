@@ -23,7 +23,7 @@ public:
 	std::vector<int> m_userCreatedTrain;
 	std::vector<BackCarriage*> m_wagons;
 	void AddWagon(const std::string& filename, int tag);
-	int m_shift = 0;
+	float m_shift = 0;
 private:
 	std::vector<int> GetRandomArrayOfWagons(const int length);
 	int m_trainRunningEndPos			= 0;

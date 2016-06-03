@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "string"
-#include "proj.win32\RailTransport.h"
+#include "RailTransport.h"
 
 using namespace std;
 using namespace cocos2d;

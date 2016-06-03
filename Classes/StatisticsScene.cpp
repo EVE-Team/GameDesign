@@ -2,7 +2,8 @@
 #include "BackGround.h"
 #include "Constants.h"
 #include "MainMenuScene.h"
-#include "proj.win32\ScoreSaver.h"
+#include "ScoreSaver.h"
+#include "..\cocos2d\external\flatbuffers\util.h"
 
 Scene* CStatisticsScene::CreateScene()
 {
@@ -23,14 +24,15 @@ bool CStatisticsScene::Init(Scene *scene)
 	CreateSceneLabels();
 
 	CScoreSaver saver;
-	auto scoreList = saver.GetScore();
+	auto scoreList = saver.GetHighScore();
 	int y = 20;
 	for (auto &it : scoreList)
 	{
-		auto header = Label::createWithTTF(it, CONSTANTS::FONT_NAME,16 );
+		auto header = Label::createWithTTF(flatbuffers::NumToString(it), CONSTANTS::FONT_NAME,16 );
 		header->setPosition(Vec2(240, 240 - y));
+		header->setColor(Color3B::BLUE);
 		y += 20;
-		this->addChild(header, 1);
+		this->addChild(header);
 	}
 	return true;
 }
@@ -40,13 +42,12 @@ void CStatisticsScene::CreateSceneLabels()
 {
 	auto header = Label::createWithTTF(CONSTANTS::STAT_CAPTION, CONSTANTS::FONT_NAME, 34);
 	header->setPosition(Vec2(240, 280));
-	header->setTag(1);
+	header->setColor(Color3B::BLUE);
 	this->addChild(header, 1);
-
-	auto exitLabel = Label::createWithTTF(CONSTANTS::BACK_CAPTION, CONSTANTS::FONT_NAME, 20);
+	/*auto exitLabel = Label::createWithTTF(CONSTANTS::BACK_CAPTION, CONSTANTS::FONT_NAME, 20);
 	exitLabel->setPosition(Vec2(240, 50));
-	exitLabel->setTag(2);
-	this->addChild(exitLabel, 1);
+	header->setColor(Color3B::YELLOW);
+	this->addChild(exitLabel, 1);*/
 }
 
 void CStatisticsScene::SetEventListener()

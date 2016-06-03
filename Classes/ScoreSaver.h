@@ -9,6 +9,6 @@ public:
 	CScoreSaver();
 	~CScoreSaver();
 	void SaveScore(std::string score);
-	std::vector<std::string> GetScore();
+	std::vector<int> GetHighScore();
 };
 

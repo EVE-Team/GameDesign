@@ -6,10 +6,13 @@
 #include "ui\CocosGUI.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
 #include "RailTransport.h"
+#include "BackGround.h"
+#include "Constants.h"
+#include "BackCarriage.h"
 
-USING_NS_CC;
-
+using namespace cocos2d;
 using namespace json11;
+using namespace std;
 
 Scene* HelloWorld::createScene()
 {
@@ -140,7 +143,7 @@ void HelloWorld::ShowState(const std::string& text)
 			{
 			case ui::Widget::TouchEventType::BEGAN:
 			{
-				auto scene = CMainMenuScene::CreateScene();
+				auto scene = CMainMenuScene::createScene();
 				Director::getInstance()->replaceScene(scene);				
 			}
 			break;

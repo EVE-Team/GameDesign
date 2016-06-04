@@ -5,18 +5,18 @@
 #include "ui\CocosGUI.h"
 #include "Constants.h"
 
-Scene* CMainMenuScene::CreateScene()
+using namespace cocos2d;
+using namespace std;
+
+Scene* CMainMenuScene::createScene()
 {
-	auto scene = Scene::createWithPhysics();
-	auto layer = CMainMenuScene::create();
-
-	layer->Init(scene);
+	auto scene = Scene::create();
+	auto layer = CMainMenuScene::create();	
 	scene->addChild(layer);
-
 	return scene;
 }
 
-bool CMainMenuScene::Init(Scene *scene)
+bool CMainMenuScene::init()
 {
 	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
@@ -65,7 +65,7 @@ void CMainMenuScene::CreateSceneLabels()
 		{
 		case ui::Widget::TouchEventType::BEGAN:
 			{
-				auto scene = CStatisticsScene::CreateScene();
+				auto scene = CStatisticsScene::createScene();
 				Director::getInstance()->replaceScene(scene);
 			}			
 			break;
@@ -88,7 +88,10 @@ void CMainMenuScene::CreateSceneLabels()
 		switch (type)
 		{
 		case ui::Widget::TouchEventType::BEGAN:
-			MenuCloseCallback(this);
+			Director::getInstance()->end();
+			#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+						exit(0);
+			#endif
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			break;
@@ -98,21 +101,4 @@ void CMainMenuScene::CreateSceneLabels()
 	});
 
 	this->addChild(exitButton);
-}
-
-void CMainMenuScene::MenuCloseCallback(Ref* pSender)
-{
-	Director::getInstance()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
-}
-
-CMainMenuScene::CMainMenuScene()
-{
-}
-
-CMainMenuScene::~CMainMenuScene()
-{
 }

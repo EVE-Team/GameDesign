@@ -1,9 +1,5 @@
 #pragma once
-
 #include "cocos2d.h"
-#include "BackGround.h"
-#include "Constants.h"
-#include "BackCarriage.h"
 
 class CRailTransport;
 class CCarriage;
@@ -12,9 +8,7 @@ class HelloWorld : public cocos2d::Layer
 {
 public:
     static cocos2d::Scene* createScene();
-
     virtual bool init();
-	//void update(float delta);
     
 	void InitBasicObjects();
 	CRailTransport* m_railTransport;

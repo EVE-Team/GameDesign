@@ -1,22 +1,12 @@
 #pragma once
 #include "cocos2d.h"
-#include "string"
-#include "RailTransport.h"
 
-using namespace std;
-using namespace cocos2d;
-
-class CTrain : public Sprite
+class CTrain : public cocos2d::Sprite
 {
 public:
 	CTrain();
-	~CTrain();
-
-	static CTrain* Create(const string &fileName);
-	bool Init(Sprite *sprite);
+	static CTrain* Create(const std::string &fileName);
+	bool Init(cocos2d::Sprite *sprite);
 	void SetContactListener();
-
-private:
-	void TouchEvent(Touch* touch);
 };
 

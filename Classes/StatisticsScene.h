@@ -1,19 +1,13 @@
 #pragma once
 #include "cocos2d.h"
 
-using namespace cocos2d;
-
-class CStatisticsScene : public Layer
+class CStatisticsScene : public cocos2d::Layer
 {
 public:
-	static Scene* CreateScene();
-	bool Init(Scene *scene);
-
+	static cocos2d::Scene* createScene();
+	virtual bool init();
 	void SetEventListener();
 	void CreateSceneLabels();
-
-	CStatisticsScene();
-	~CStatisticsScene();
 	CREATE_FUNC(CStatisticsScene);
 	std::vector<int> GetHighScore();
 };

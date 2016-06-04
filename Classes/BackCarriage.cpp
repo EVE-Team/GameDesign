@@ -1,18 +1,13 @@
 #include "BackCarriage.h"
 #include "RailTransport.h"
-
-USING_NS_CC;
+#include <string>
+#include "HelloWorldScene.h"
 
 using namespace std;
 using namespace cocos2d;
 
 BackCarriage::BackCarriage(const string &fileName)
 	: m_spriteFileName(fileName)
-{
-}
-
-
-BackCarriage::~BackCarriage()
 {
 }
 
@@ -70,18 +65,13 @@ void BackCarriage::SetContactListener()
 		return false;
 	};
 	listener->onTouchEnded = [=](Touch* touch, Event* event){
-		TouchEvent(touch);
+		auto parent = dynamic_cast<CRailTransport*>(this->getParent());
+		auto remWag = parent->m_wagons.back();
+		parent->m_wagons.pop_back();
+		parent->m_userCreatedTrain.pop_back();
+		float shift = parent->m_shift - remWag->getContentSize().width;
+		parent->m_shift = shift;
+		parent->removeChild(remWag, false);
 	};
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
-}
-
-void BackCarriage::TouchEvent(Touch* touch)
-{
-	auto parent = dynamic_cast<CRailTransport*>(this->getParent());
-	auto remWag = parent->m_wagons.back();
-	parent->m_wagons.pop_back();
-	parent->m_userCreatedTrain.pop_back();
-	float shift = parent->m_shift - remWag->getContentSize().width;
-	parent->m_shift = shift;
-	parent->removeChild(remWag, false);
 }

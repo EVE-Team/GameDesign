@@ -1,23 +1,14 @@
 #pragma once
 #include "cocos2d.h"
-#include "string"
-#include "RailTransport.h"
 
-using namespace std;
-using namespace cocos2d;
-
-class CCarriage : public Sprite
+class CCarriage : public cocos2d::Sprite
 {
 public:
-	CCarriage(const string &fileName);
-	~CCarriage();
-
-	static CCarriage* Create(const string &fileName);
-	bool Init(Sprite *sprite);
+	CCarriage(const std::string &fileName);
+	static CCarriage* Create(const std::string &fileName);
+	bool Init(cocos2d::Sprite *sprite);
 	void SetContactListener();
-
 private:
-	void TouchEvent(Touch* touch);
-	string m_spriteFileName;
+	std::string m_spriteFileName;
 };
 

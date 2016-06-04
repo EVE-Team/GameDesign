@@ -1,8 +1,4 @@
 #include "BackGround.h"
-#include "cocos2d.h"
-#include "string"
-
-USING_NS_CC;
 
 using namespace std;
 using namespace cocos2d;

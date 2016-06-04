@@ -1,11 +1,6 @@
 #pragma once
 #include "cocos2d.h"
-#include "CONSTANTS.h"
-#include "Train.h"
 #include "BackCarriage.h"
-#include "ui\CocosGUI.h"
-#include "MainMenuScene.h"
-#include "HelloWorldScene.h"
 
 class CRailTransport : public cocos2d::Layer
 {

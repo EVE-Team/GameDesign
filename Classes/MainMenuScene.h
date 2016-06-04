@@ -1,23 +1,12 @@
 #pragma once
 #include "cocos2d.h"
 
-using namespace cocos2d;
-
-class CMainMenuScene : public Layer
+class CMainMenuScene : public cocos2d::Layer
 {
 public:
-	static Scene* CreateScene();
-	bool Init(Scene *scene);
-
-	void MenuCloseCallback(Ref* pSender);
-	void SetEventListener();
-	void CreateSceneLabels();
-	void ChooseAction(int action);
-	void ShowStatistics();
-	 
-	CMainMenuScene();
-	~CMainMenuScene();
-
+	static cocos2d::Scene* createScene();
+	bool init();
+	void CreateSceneLabels();	 
 	CREATE_FUNC(CMainMenuScene);
 };
 

@@ -1,24 +1,13 @@
 #pragma once
 #include "cocos2d.h"
-#include "string"
-#include "HelloWorldScene.h"
 
-using namespace std;
-using namespace cocos2d;
-
-class BackCarriage : public Sprite
+class BackCarriage : public cocos2d::Sprite
 {
 public:
-	BackCarriage(const string &fileName);
-	~BackCarriage();
-
-	static BackCarriage* Create(const string &fileName);
-	
-	bool Init(Sprite *sprite);
+	BackCarriage(const std::string &fileName);
+	static BackCarriage* Create(const std::string &fileName);	
+	bool Init(cocos2d::Sprite *sprite);
 	void SetContactListener();
-
-private:
-	void TouchEvent(Touch* touch);
-	string m_spriteFileName;
+private:	
+	std::string m_spriteFileName;
 };
-

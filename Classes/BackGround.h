@@ -1,17 +1,11 @@
 #pragma once
-
 #include "cocos2d.h"
-#include "..\cocos2d\cocos\physics\CCPhysicsBody.h"
-#include "string"
 
-using namespace std;
-using namespace cocos2d;
-
-class CBackGround : public Sprite
+class CBackGround : public cocos2d::Sprite
 {
 public:
 	CBackGround();
-	static CBackGround* Create(const string &fileName);
+	static CBackGround* Create(const std::string &fileName);
 	~CBackGround();
 };
 

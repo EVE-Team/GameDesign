@@ -4,18 +4,18 @@
 #include "MainMenuScene.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
 
-Scene* CStatisticsScene::CreateScene()
+using namespace std;
+using namespace cocos2d;
+
+Scene* CStatisticsScene::createScene()
 {
 	auto scene = Scene::create();
 	auto layer = CStatisticsScene::create();
-
-	layer->Init(scene);
 	scene->addChild(layer);
-
 	return scene;
 }
 
-bool CStatisticsScene::Init(Scene *scene)
+bool CStatisticsScene::init()
 {
 	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
@@ -48,21 +48,13 @@ void CStatisticsScene::SetEventListener()
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->setSwallowTouches(true);
 	listener->onTouchBegan = [](Touch* touch, Event* event){
-		auto scene = CMainMenuScene::CreateScene();
+		auto scene = CMainMenuScene::createScene();
 		Director::getInstance()->replaceScene(scene);
 		return true;
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
-CStatisticsScene::CStatisticsScene()
-{
-}
-
-
-CStatisticsScene::~CStatisticsScene()
-{
-}
 
 vector<int> CStatisticsScene::GetHighScore()
 {

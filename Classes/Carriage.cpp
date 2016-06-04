@@ -1,15 +1,12 @@
 #include "Carriage.h"
 #include "HelloWorldScene.h"
+#include "RailTransport.h"
 
 using namespace std;
 using namespace cocos2d;
 
 CCarriage::CCarriage(const string &fileName)
 	: m_spriteFileName(fileName)
-{
-}
-
-CCarriage::~CCarriage()
 {
 }
 
@@ -67,13 +64,8 @@ void CCarriage::SetContactListener()
 		return false;
 	};
 	listener->onTouchEnded = [=](Touch* touch, Event* event){
-		TouchEvent(touch);
+		auto scene = dynamic_cast<HelloWorld*>(this->getParent());
+		scene->m_railTransport->AddWagon(m_spriteFileName, this->getTag());
 	};
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
-}
-
-void CCarriage::TouchEvent(Touch* touch)
-{
-	auto scene = dynamic_cast<HelloWorld*>(this->getParent());
-	scene->m_railTransport->AddWagon(m_spriteFileName, this->getTag());
 }

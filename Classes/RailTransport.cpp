@@ -1,5 +1,11 @@
 #include "RailTransport.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
+#include "CONSTANTS.h"
+#include "Train.h"
+#include "BackCarriage.h"
+#include "ui\CocosGUI.h"
+#include "MainMenuScene.h"
+#include "HelloWorldScene.h"
 
 using namespace cocos2d;
 using namespace std;

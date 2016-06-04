@@ -1,20 +1,10 @@
 #include "Train.h"
-#include "cocos2d.h"
-#include "string"
-#include "HelloWorldScene.h"
-#include "MainMenuScene.h"
-
-
-USING_NS_CC;
+#include "RailTransport.h"
 
 using namespace std;
 using namespace cocos2d;
 
 CTrain::CTrain()
-{
-}
-
-CTrain::~CTrain()
 {
 }
 
@@ -72,13 +62,8 @@ void CTrain::SetContactListener()
 		return false;
 	};
 	listener->onTouchEnded = [=](Touch* touch, Event* event){
-		TouchEvent(touch);
+		auto parent = dynamic_cast<CRailTransport*>(this->getParent());
+		parent->CheckGameState();
 	};
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
-}
-
-void CTrain::TouchEvent(Touch* touch)
-{
-	auto parent = dynamic_cast<CRailTransport*>(this->getParent());
-	parent->CheckGameState();
 }

@@ -4,7 +4,7 @@
 namespace CONSTANTS
 {
 	static const std::string FONT_NAME = "fonts/Marker Felt.ttf";
-	static const std::string BACKGROUND_FILENAME = "images\\background.png";	
+	static const std::string BACKGROUND_FILENAME = "images/background.png";	
 	static const std::string FIRST_ACTION = "Let's Play! Touch the screen!";
 	static const std::string GAME_NAME = "Train";
 	static const std::string GAME_OVER = "Game Over!";
@@ -17,11 +17,11 @@ namespace CONSTANTS
 	static const int MAX_LEN = 9;
 	static const int NUMBER_OF_HS_POS = 5;
 
-	static const std::string TRAIN_SPRITE_FILENAME = "images\\train.png";
+	static const std::string TRAIN_SPRITE_FILENAME = "images/train.png";
 	static const int NUMBER_OF_CARRIAGE = 6;	
-	static const std::string CARRIAGE_SPRITE_FILENAME = "images\\";
+	static const std::string CARRIAGE_SPRITE_FILENAME = "images/";
 	static const std::string CARRIAGE_FILENAME_RESOLUTION = ".png";
-	static const std::string SCORE_FILENAME = "score.txt";
+	//static const std::string SCORE_FILENAME = ;
 	extern int len;
 	extern int state;
 	extern int score;

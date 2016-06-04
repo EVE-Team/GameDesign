@@ -153,7 +153,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\json11.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\RailTransport.cpp" />
-    <ClCompile Include="..\Classes\ScoreSaver.cpp" />
     <ClCompile Include="..\Classes\StatisticsScene.cpp" />
     <ClCompile Include="..\Classes\Train.cpp" />
     <ClCompile Include="main.cpp" />
@@ -168,7 +167,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\json11.hpp" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
     <ClInclude Include="..\Classes\RailTransport.h" />
-    <ClInclude Include="..\Classes\ScoreSaver.h" />
     <ClInclude Include="..\Classes\StatisticsScene.h" />
     <ClInclude Include="..\Classes\Train.h" />
     <ClInclude Include="main.h" />

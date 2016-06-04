@@ -15,6 +15,6 @@ public:
 	CStatisticsScene();
 	~CStatisticsScene();
 	CREATE_FUNC(CStatisticsScene);
-private:
+	std::vector<int> GetHighScore();
 };
 

@@ -6,8 +6,6 @@
 #include "ui\CocosGUI.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
 #include "RailTransport.h"
-#include "ScoreSaver.h"
-
 
 USING_NS_CC;
 
@@ -47,7 +45,7 @@ bool HelloWorld::init()
 	score->setPosition(Vec2(10, 300));
 	this->addChild(score, 1);
 
-	auto life = Sprite::create("images\\life.png");
+	auto life = Sprite::create("images/life.png");
 	life->setScale(0.03);
 	life->setAnchorPoint(Vec2(0, 0));
 	life->setPosition(Vec2(90, 305));
@@ -121,9 +119,8 @@ void HelloWorld::ShowState(const std::string& text)
 	{
 		if (CONSTANTS::number_life == 1)
 		{
-			CONSTANTS::state = 3;
-			CScoreSaver saver;
-			saver.SaveScore(flatbuffers::NumToString(CONSTANTS::score));
+			CONSTANTS::state = 3;			
+			SaveScore(flatbuffers::NumToString(CONSTANTS::score));
 			CONSTANTS::score = 0;
 			CONSTANTS::number_life = 3;
 		}
@@ -174,4 +171,13 @@ void HelloWorld::ShowState(const std::string& text)
 	}
 	
 	this->addChild(gameState, 30);
+}
+
+
+void HelloWorld::SaveScore(const string& score)
+{
+	ofstream file;
+	file.open(CCFileUtils::getInstance()->fullPathForFilename("score.db").c_str(), ios::app);
+	file << score << endl;
+	file.close();
 }

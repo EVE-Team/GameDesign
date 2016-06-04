@@ -63,9 +63,6 @@
     <ClCompile Include="..\Classes\RailTransport.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ScoreSaver.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -102,9 +99,6 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\RailTransport.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ScoreSaver.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>

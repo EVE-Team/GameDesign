@@ -2,7 +2,6 @@
 #include "BackGround.h"
 #include "Constants.h"
 #include "MainMenuScene.h"
-#include "ScoreSaver.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
 
 Scene* CStatisticsScene::CreateScene()
@@ -21,10 +20,8 @@ bool CStatisticsScene::Init(Scene *scene)
 	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	SetEventListener();
-	CreateSceneLabels();
-
-	CScoreSaver saver;
-	auto scoreList = saver.GetHighScore();
+	CreateSceneLabels();	
+	auto scoreList = GetHighScore();
 	int y = 20;
 	for (auto &it : scoreList)
 	{
@@ -43,11 +40,7 @@ void CStatisticsScene::CreateSceneLabels()
 	auto header = Label::createWithTTF(CONSTANTS::STAT_CAPTION, CONSTANTS::FONT_NAME, 34);
 	header->setPosition(Vec2(240, 280));
 	header->setColor(Color3B::BLUE);
-	this->addChild(header, 1);
-	/*auto exitLabel = Label::createWithTTF(CONSTANTS::BACK_CAPTION, CONSTANTS::FONT_NAME, 20);
-	exitLabel->setPosition(Vec2(240, 50));
-	header->setColor(Color3B::YELLOW);
-	this->addChild(exitLabel, 1);*/
+	this->addChild(header);
 }
 
 void CStatisticsScene::SetEventListener()
@@ -69,4 +62,29 @@ CStatisticsScene::CStatisticsScene()
 
 CStatisticsScene::~CStatisticsScene()
 {
+}
+
+vector<int> CStatisticsScene::GetHighScore()
+{
+	ifstream file;
+	file.open(CCFileUtils::getInstance() ->fullPathForFilename("score.db").c_str());
+	string line;
+	vector<int> temp;
+	while (getline(file, line))
+	{
+		int num = atoi(line.c_str());
+		if (num != 0)
+		{
+			temp.push_back(num);
+		}
+	}
+	sort(temp.begin(), temp.end(), [](int i, int j){
+		return i > j;
+	});
+	vector<int> res;
+	for (size_t i = 0; i < temp.size() && i < CONSTANTS::NUMBER_OF_HS_POS; i++)
+	{
+		res.push_back(temp[i]);
+	}
+	return res;
 }

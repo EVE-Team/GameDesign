@@ -22,7 +22,8 @@ public:
 	void ShowState(const std::string& text);
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
-	void SetListenersForWagons();	
+	void SetListenersForWagons();
+	void SaveScore(const std::string&);
 private:
 	std::vector<CCarriage*> m_wagons;
 	int m_length;

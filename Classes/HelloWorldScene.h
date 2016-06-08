@@ -3,6 +3,7 @@
 
 class CRailTransport;
 class CCarriage;
+class CPauseButton;
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -24,4 +25,8 @@ public:
 private:
 	std::vector<CCarriage*> m_wagons;
 	int m_length;
+	cocos2d::Label* m_scoreLabel;
+	cocos2d::Sprite* m_lifesSprite;
+	cocos2d::Label* m_lifesLabel;
+	CPauseButton* m_btnPause;
 };

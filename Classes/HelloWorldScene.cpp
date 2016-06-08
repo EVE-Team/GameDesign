@@ -43,29 +43,29 @@ bool HelloWorld::init()
 	m_railTransport->BeginNewLevel(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY));
 	this->addChild(m_railTransport);
 
-	auto score = Label::createWithTTF(Constants::SCORE_TITLE + 
+	m_scoreLabel = Label::createWithTTF(Constants::SCORE_TITLE +
 		flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY)),
 		Constants::FONT_NAME, 16);
-	score->setColor(Color3B::YELLOW);	
-	score->setAnchorPoint(Vec2(0, 0));
-	score->setPosition(Vec2(10, 30));
-	this->addChild(score, 1);
+	m_scoreLabel->setColor(Color3B::YELLOW);
+	m_scoreLabel->setAnchorPoint(Vec2(0, 0));
+	m_scoreLabel->setPosition(Vec2(10, 30));
+	this->addChild(m_scoreLabel, 1);
 
-	auto life = Sprite::create(Constants::LIFES_IMAGE_FILENAME);	
-	life->setAnchorPoint(Vec2(0, 0));
-	life->setPosition(Vec2(85, 33));
-	this->addChild(life, 1);
+	m_lifesSprite = Sprite::create(Constants::LIFES_IMAGE_FILENAME);
+	m_lifesSprite->setAnchorPoint(Vec2(0, 0));
+	m_lifesSprite->setPosition(Vec2(85, 33));
+	this->addChild(m_lifesSprite, 1);
 
-	auto nLife = Label::createWithTTF(flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY)),
+	m_lifesLabel = Label::createWithTTF(flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY)),
 		Constants::FONT_NAME, 16);
-	nLife->setColor(Color3B::YELLOW);
-	nLife->setAnchorPoint(Vec2(0, 0));
-	nLife->setPosition(Vec2(105, 30));
-	this->addChild(nLife, 1);
+	m_lifesLabel->setColor(Color3B::YELLOW);
+	m_lifesLabel->setAnchorPoint(Vec2(0, 0));
+	m_lifesLabel->setPosition(Vec2(105, 30));
+	this->addChild(m_lifesLabel, 1);
 
-	auto btnPause = CPauseButton::Create(Constants::PAUSE_BTN_IMG_FILENAME);
-	btnPause->setPosition(Vec2(30, 290));
-	this->addChild(btnPause, 1);
+	m_btnPause = CPauseButton::Create(Constants::PAUSE_BTN_IMG_FILENAME);
+	m_btnPause->setPosition(Vec2(30, 290));
+	this->addChild(m_btnPause, 1);
 
 	return true;
 }
@@ -147,10 +147,6 @@ void HelloWorld::ShowState(const std::string& text)
 		{		
 			SaveResult();
 			state = 3;
-			auto scoreLabel = Label::createWithTTF("Your score: " + flatbuffers::NumToString(score), Constants::FONT_NAME, 24);
-			scoreLabel->setColor(Color3B::YELLOW);
-			scoreLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 70));
-			this->addChild(scoreLabel,10);
 			SaveScore(flatbuffers::NumToString(score));
 		}
 		else
@@ -196,8 +192,19 @@ void HelloWorld::ShowState(const std::string& text)
 			}
 		});
 	}
-	
 	this->addChild(gameState, 30);
+	if (m_scoreLabel && m_lifesLabel && m_lifesSprite && m_btnPause)
+	{
+		m_scoreLabel->setVisible(false);
+		m_lifesLabel->setVisible(false);
+		m_lifesSprite->setVisible(false);
+		m_btnPause->RemoveListener();
+		m_btnPause->setVisible(false);
+	}	
+	auto scoreLabel = Label::createWithTTF("Your score: " + flatbuffers::NumToString(score), Constants::FONT_NAME, 24);
+	scoreLabel->setColor(Color3B::YELLOW);
+	scoreLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 70));
+	this->addChild(scoreLabel, 10);
 }
 
 

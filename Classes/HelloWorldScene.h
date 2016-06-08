@@ -19,6 +19,8 @@ public:
 	void SetListenersForWagons();
 	void SaveScore(const std::string&);
 	void RemoveListenersForWagons();
+	void onExit();
+	void SaveResult();
 private:
 	std::vector<CCarriage*> m_wagons;
 	int m_length;

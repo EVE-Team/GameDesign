@@ -7,11 +7,12 @@ namespace CONSTANTS
 	static const std::string BACKGROUND_FILENAME_MAIN = "images/background.png";
 	static const std::string BACKGROUND_FILENAME = "images/background2.png";
 	static const std::string TITLE_PAUSE = "PAUSE";
-	static const std::string GAME_NAME = "Train";
+	static const std::string GAME_NAME = "TRAIN";
 	static const std::string GAME_OVER = "Game Over!";
 	static const std::string REPEAT_ACTION = "Want to play again - press Enter";
 	static const std::string PAUSE_SPRITE_FILENAME = "pause.jpg";
-	static const std::string START_GAME_CAPTION = "Start";
+	static const std::string START_GAME_CAPTION = "New Game";
+	static const std::string TITLE_RESUME_GAME = "Resume Game";
 	static const std::string STAT_CAPTION = "High Score";
 	static const std::string EXIT_CAPTION = "Exit";
 	static const std::string BACK_CAPTION = "Back";

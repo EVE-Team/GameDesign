@@ -3,6 +3,7 @@
 #include "Constants.h"
 #include "MainMenuScene.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
+#include <fstream>
 
 using namespace std;
 using namespace cocos2d;
@@ -59,7 +60,8 @@ void CStatisticsScene::SetEventListener()
 vector<int> CStatisticsScene::GetHighScore()
 {
 	ifstream file;
-	file.open(CCFileUtils::getInstance() ->fullPathForFilename("score.db").c_str());
+	string path = FileUtils::getInstance()->getWritablePath() + "/score.db";
+	file.open(path);
 	string line;
 	vector<int> temp;
 	while (getline(file, line))

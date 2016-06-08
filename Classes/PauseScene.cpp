@@ -4,6 +4,7 @@
 #include "MainMenuScene.h"
 #include "ui\CocosGUI.h"
 #include "Constants.h"
+#include <fstream>
 
 using namespace cocos2d;
 using namespace std;
@@ -26,17 +27,17 @@ bool CPauseScene::init()
 
 void CPauseScene::CreateSceneLabels()
 {
-	auto name = Label::createWithTTF(CONSTANTS::TITLE_PAUSE, CONSTANTS::FONT_NAME, 64);
+	auto name = Label::createWithTTF(CONSTANTS::TITLE_PAUSE, CONSTANTS::FONT_NAME, 34);
 	name->setPosition(Vec2(240, 280));
 	name->setTag(1);
 	this->addChild(name, 1);
 
 	auto btnNewGame = ui::Button::create();
-	btnNewGame->setTitleText("RESUME");
+	btnNewGame->setTitleText(CONSTANTS::TITLE_RESUME_GAME);
 	btnNewGame->setColor(Color3B::BLUE);
 	btnNewGame->setTitleFontSize(30);
 	btnNewGame->setTitleFontName(CONSTANTS::FONT_NAME);
-	btnNewGame->setPosition(Vec2(240, 240));
+	btnNewGame->setPosition(Vec2(240, 230));
 	btnNewGame->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)
 		{
@@ -55,16 +56,16 @@ void CPauseScene::CreateSceneLabels()
 	this->addChild(btnNewGame);
 
 	auto statisticsButton = ui::Button::create();
-	statisticsButton->setTitleText("TO MENU");
+	statisticsButton->setTitleText("Menu");
 	statisticsButton->setColor(Color3B::BLUE);
 	statisticsButton->setTitleFontSize(30);
 	statisticsButton->setTitleFontName(CONSTANTS::FONT_NAME);
-	statisticsButton->setPosition(Vec2(240, 210));
+	statisticsButton->setPosition(Vec2(240, 190));
 	statisticsButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)
 		{
 		case ui::Widget::TouchEventType::BEGAN:
-			{
+			{				
 				auto scene = CMainMenuScene::createScene();
 				Director::getInstance()->replaceScene(scene);
 			}			

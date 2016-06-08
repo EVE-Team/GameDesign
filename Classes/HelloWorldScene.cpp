@@ -142,28 +142,26 @@ void HelloWorld::ShowState(const std::string& text)
 	}
 	else
 	{
-		if (lifes == 1)
-		{
+		UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, --lifes);
+		if (lifes == 0)
+		{		
+			SaveResult();
 			state = 3;
 			auto scoreLabel = Label::createWithTTF("Your score: " + flatbuffers::NumToString(score), CONSTANTS::FONT_NAME, 24);
 			scoreLabel->setColor(Color3B::YELLOW);
 			scoreLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 70));
 			this->addChild(scoreLabel,10);
 			SaveScore(flatbuffers::NumToString(score));
-			UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, 3);
-			UserDefault::getInstance()->setIntegerForKey(DataKeys::SCORE_COUNT_KEY, 0);
 		}
 		else
 		{
 			title = "Try again";
 			gameState->setTitleText(title);
-			state = 2;			
-			UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, --lifes);
+			state = 2;				
 		}
 	}
 	if ((state == 1) || (state == 3))
 	{
-		UserDefault::getInstance()->setIntegerForKey(DataKeys::TRAIN_LEN_KEY, 3);
 		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 			switch (type)
 			{
@@ -206,7 +204,28 @@ void HelloWorld::ShowState(const std::string& text)
 void HelloWorld::SaveScore(const string& score)
 {
 	ofstream file;
-	file.open(CCFileUtils::getInstance()->fullPathForFilename("score.db").c_str(), ios::app);
+	string path = FileUtils::getInstance()->getWritablePath() + "/score.db";
+	file.open(path, ios::app);
 	file << score << endl;
+	file.close();
+}
+
+
+void HelloWorld::onExit()
+{
+	SaveResult();
+	Layer::onExit();
+}
+
+
+void HelloWorld::SaveResult()
+{
+	int trainLen = UserDefault::getInstance()->getIntegerForKey(DataKeys::TRAIN_LEN_KEY);
+	int score = UserDefault::getInstance()->getIntegerForKey(DataKeys::SCORE_COUNT_KEY);
+	int lifes = UserDefault::getInstance()->getIntegerForKey(DataKeys::LIFE_COUNT_KEY);
+	ofstream file;
+	string savesPath = FileUtils::getInstance()->getWritablePath() + "/saves.db";
+	file.open(savesPath);
+	file << lifes << endl << trainLen << endl << score;
 	file.close();
 }

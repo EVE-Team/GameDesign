@@ -18,6 +18,7 @@ public:
     CREATE_FUNC(HelloWorld);
 	void SetListenersForWagons();
 	void SaveScore(const std::string&);
+	void RemoveListenersForWagons();
 private:
 	std::vector<CCarriage*> m_wagons;
 	int m_length;

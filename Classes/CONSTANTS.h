@@ -14,6 +14,7 @@ namespace CONSTANTS
 	static const std::string STAT_CAPTION = "High Score";
 	static const std::string EXIT_CAPTION = "Exit";
 	static const std::string BACK_CAPTION = "Back";
+	static const std::string SCORE_TITLE = "score: ";
 	static const int MAX_LEN = 9;
 	static const int NUMBER_OF_HS_POS = 5;
 
@@ -22,6 +23,7 @@ namespace CONSTANTS
 	static const std::string CARRIAGE_SPRITE_FILENAME = "images/";
 	static const std::string CARRIAGE_FILENAME_RESOLUTION = ".png";
 	//static const std::string SCORE_FILENAME = ;
+	static const std::string LIFES_IMAGE_FILENAME = "images/life.png";
 	extern int len;
 	extern int state;
 	extern int score;

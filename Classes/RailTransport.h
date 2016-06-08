@@ -12,6 +12,7 @@ public:
 	virtual bool init();
 	void update(float delta);
 	void CheckGameState();
+	void RemoveListenersForWagons();
 	//void ShowState(const std::string& text);
 
 	std::vector<int> m_levelCreatedTrain;

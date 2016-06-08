@@ -75,3 +75,8 @@ void BackCarriage::SetContactListener()
 	};
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
+
+void BackCarriage::RemoveListener()
+{
+	Director::getInstance()->getEventDispatcher()->removeEventListenersForTarget(this);
+}

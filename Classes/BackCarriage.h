@@ -8,6 +8,7 @@ public:
 	static BackCarriage* Create(const std::string &fileName);	
 	bool Init(cocos2d::Sprite *sprite);
 	void SetContactListener();
+	void RemoveListener();
 private:	
 	std::string m_spriteFileName;
 };

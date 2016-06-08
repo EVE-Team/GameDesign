@@ -69,3 +69,9 @@ void CCarriage::SetContactListener()
 	};
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
+
+
+void CCarriage::RemoveListener()
+{
+	Director::getInstance()->getEventDispatcher()->removeEventListenersForTarget(this);
+}

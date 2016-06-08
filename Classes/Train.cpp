@@ -64,6 +64,7 @@ void CTrain::SetContactListener()
 	listener->onTouchEnded = [=](Touch* touch, Event* event){
 		auto parent = dynamic_cast<CRailTransport*>(this->getParent());
 		parent->CheckGameState();
+		Director::getInstance()->getEventDispatcher()->removeEventListenersForTarget(this);
 	};
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }

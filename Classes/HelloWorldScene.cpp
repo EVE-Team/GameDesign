@@ -42,22 +42,22 @@ bool HelloWorld::init()
 	m_railTransport->BeginNewLevel(CONSTANTS::len);
 	this->addChild(m_railTransport);
 
-	auto score = Label::createWithTTF("score: " + flatbuffers::NumToString(CONSTANTS::score), CONSTANTS::FONT_NAME, 16);
+	auto score = Label::createWithTTF(CONSTANTS::SCORE_TITLE + flatbuffers::NumToString(CONSTANTS::score), CONSTANTS::FONT_NAME, 16);
 	score->setColor(Color3B::YELLOW);	
 	score->setAnchorPoint(Vec2(0, 0));
-	score->setPosition(Vec2(10, 300));
+	score->setPosition(Vec2(10, 290));
 	this->addChild(score, 1);
 
-	auto life = Sprite::create("images/life.png");
+	auto life = Sprite::create(CONSTANTS::LIFES_IMAGE_FILENAME);
 	life->setScale(0.03);
 	life->setAnchorPoint(Vec2(0, 0));
-	life->setPosition(Vec2(90, 305));
+	life->setPosition(Vec2(90, 295));
 	this->addChild(life, 1);
 
 	auto nLife = Label::createWithTTF(flatbuffers::NumToString(CONSTANTS::number_life), CONSTANTS::FONT_NAME, 16);
 	nLife->setColor(Color3B::YELLOW);
 	nLife->setAnchorPoint(Vec2(0, 0));
-	nLife->setPosition(Vec2(100, 300));
+	nLife->setPosition(Vec2(100, 290));
 	this->addChild(nLife, 1);
 
 	return true;
@@ -92,8 +92,18 @@ void HelloWorld::SetListenersForWagons()
 }
 
 
+void HelloWorld::RemoveListenersForWagons()
+{
+	for (auto it : m_wagons)
+	{
+		it->RemoveListener();
+	}
+}
+
+
 void HelloWorld::ShowState(const std::string& text)
 {
+	RemoveListenersForWagons();
 	string title = text;
 	auto gameState = ui::Button::create();
 	gameState->setTitleText(text);

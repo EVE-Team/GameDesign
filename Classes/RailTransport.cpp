@@ -1,6 +1,6 @@
 #include "RailTransport.h"
 #include "..\cocos2d\external\flatbuffers\util.h"
-#include "CONSTANTS.h"
+#include "Constants.h"
 #include "Train.h"
 #include "BackCarriage.h"
 #include "ui\CocosGUI.h"
@@ -40,7 +40,7 @@ bool CRailTransport::init()
 	{
 		return false;
 	}
-	this->setPosition(Vec2(400, CONSTANTS::RAIL_POSITON_Y));
+	this->setPosition(Vec2(400, Constants::RAIL_POSITON_Y));
 	this->scheduleUpdate();
 	return true;
 }
@@ -50,7 +50,7 @@ std::vector<int> CRailTransport::GetRandomArrayOfWagons(const int count)
 	vector<int> points;
 	while (points.size() != count)
 	{
-		int currRandom = rand() % CONSTANTS::NUMBER_OF_CARRIAGE + 1;
+		int currRandom = rand() % Constants::NUMBER_OF_CARRIAGE + 1;
 		points.push_back(currRandom);
 	}
 	return points;
@@ -60,7 +60,7 @@ void CRailTransport::BeginNewLevel(int length)
 {
 	m_length = length;
 	this->m_levelCreatedTrain = GetRandomArrayOfWagons(length);
-	auto train = Sprite::create(CONSTANTS::TRAIN_SPRITE_FILENAME);
+	auto train = Sprite::create(Constants::TRAIN_SPRITE_FILENAME);
 	train->setAnchorPoint(Vec2(0, 0));
 	Size trainSize = train->getContentSize();
 	train->setPosition(Vec2(0, 0));
@@ -69,7 +69,7 @@ void CRailTransport::BeginNewLevel(int length)
 	int startPosition = trainSize.width;
 	for (size_t i = 0; i < m_levelCreatedTrain.size(); ++i)
 	{
-		auto newCarriage = Sprite::create(CONSTANTS::CARRIAGE_SPRITE_FILENAME + flatbuffers::NumToString(m_levelCreatedTrain[i]) + CONSTANTS::CARRIAGE_FILENAME_RESOLUTION);
+		auto newCarriage = Sprite::create(Constants::CARRIAGE_SPRITE_FILENAME + flatbuffers::NumToString(m_levelCreatedTrain[i]) + Constants::CARRIAGE_FILENAME_RESOLUTION);
 		newCarriage->setAnchorPoint(Vec2(0, 0));
 		newCarriage->setPosition(Vec2(startPosition, 0));
 		newCarriage->setTag(m_levelCreatedTrain[i]);
@@ -77,7 +77,7 @@ void CRailTransport::BeginNewLevel(int length)
 		Size carriageSize = newCarriage->getContentSize();
 		startPosition += carriageSize.width;
 	}
-	auto carriageMove = MoveTo::create(1 + 2 * length, Vec2(0 - startPosition, CONSTANTS::RAIL_POSITON_Y));
+	auto carriageMove = MoveTo::create(1 + 2 * length, Vec2(0 - startPosition, Constants::RAIL_POSITON_Y));
 	this->runAction(carriageMove);
 	m_trainRunningEndPos = -startPosition;
 	m_isTrainRunning = true;
@@ -88,9 +88,9 @@ void CRailTransport::update(float delta)
 	if ((this->getPositionX() == this->m_trainRunningEndPos) && (this->m_isTrainRunning))
 	{
 		this->removeAllChildrenWithCleanup(true);
-		this->setPosition(Vec2(10, CONSTANTS::RAIL_POSITON_Y));
+		this->setPosition(Vec2(10, Constants::RAIL_POSITON_Y));
 		this->scheduleUpdate();
-		auto train = CTrain::Create(CONSTANTS::TRAIN_SPRITE_FILENAME);
+		auto train = CTrain::Create(Constants::TRAIN_SPRITE_FILENAME);
 		train->setAnchorPoint(Vec2(0, 0));
 		train->setPosition(Vec2(0,0));
 		m_shift = train->getContentSize().width;
@@ -138,7 +138,7 @@ void CRailTransport::CheckGameState()
 	RemoveListenersForWagons();
 	auto move = MoveBy::create(1, Vec2(shift, 0));
 	this->runAction(RepeatForever::create(move));
-	string text = right ? "You win" : CONSTANTS::GAME_OVER;
+	string text = right ? "You win" : Constants::GAME_OVER;
 	dynamic_cast<HelloWorld*>(this->getParent())->ShowState(text);
 }
 

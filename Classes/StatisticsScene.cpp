@@ -18,7 +18,7 @@ Scene* CStatisticsScene::createScene()
 
 bool CStatisticsScene::init()
 {
-	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
+	auto backGround = CBackGround::Create(Constants::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	SetEventListener();
 	CreateSceneLabels();	
@@ -26,7 +26,7 @@ bool CStatisticsScene::init()
 	int y = 20;
 	for (auto &it : scoreList)
 	{
-		auto header = Label::createWithTTF(flatbuffers::NumToString(it), CONSTANTS::FONT_NAME,16 );
+		auto header = Label::createWithTTF(flatbuffers::NumToString(it), Constants::FONT_NAME,16 );
 		header->setPosition(Vec2(240, 240 - y));
 		header->setColor(Color3B::BLUE);
 		y += 20;
@@ -38,7 +38,7 @@ bool CStatisticsScene::init()
 
 void CStatisticsScene::CreateSceneLabels()
 {
-	auto header = Label::createWithTTF(CONSTANTS::STAT_CAPTION, CONSTANTS::FONT_NAME, 34);
+	auto header = Label::createWithTTF(Constants::STAT_CAPTION, Constants::FONT_NAME, 34);
 	header->setPosition(Vec2(240, 280));
 	header->setColor(Color3B::BLUE);
 	this->addChild(header);
@@ -76,7 +76,7 @@ vector<int> CStatisticsScene::GetHighScore()
 		return i > j;
 	});
 	vector<int> res;
-	for (size_t i = 0; i < temp.size() && i < CONSTANTS::NUMBER_OF_HS_POS; i++)
+	for (size_t i = 0; i < temp.size() && i < Constants::NUMBER_OF_HS_POS; i++)
 	{
 		res.push_back(temp[i]);
 	}

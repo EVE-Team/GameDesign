@@ -19,7 +19,7 @@ Scene* CPauseScene::createScene()
 
 bool CPauseScene::init()
 {
-	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
+	auto backGround = CBackGround::Create(Constants::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	CreateSceneLabels();
 	return true;
@@ -27,16 +27,16 @@ bool CPauseScene::init()
 
 void CPauseScene::CreateSceneLabels()
 {
-	auto name = Label::createWithTTF(CONSTANTS::TITLE_PAUSE, CONSTANTS::FONT_NAME, 34);
+	auto name = Label::createWithTTF(Constants::TITLE_PAUSE, Constants::FONT_NAME, 34);
 	name->setPosition(Vec2(240, 280));
 	name->setTag(1);
 	this->addChild(name, 1);
 
 	auto btnNewGame = ui::Button::create();
-	btnNewGame->setTitleText(CONSTANTS::TITLE_RESUME_GAME);
+	btnNewGame->setTitleText(Constants::TITLE_RESUME_GAME);
 	btnNewGame->setColor(Color3B::BLUE);
 	btnNewGame->setTitleFontSize(30);
-	btnNewGame->setTitleFontName(CONSTANTS::FONT_NAME);
+	btnNewGame->setTitleFontName(Constants::FONT_NAME);
 	btnNewGame->setPosition(Vec2(240, 230));
 	btnNewGame->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)
@@ -59,7 +59,7 @@ void CPauseScene::CreateSceneLabels()
 	statisticsButton->setTitleText("Menu");
 	statisticsButton->setColor(Color3B::BLUE);
 	statisticsButton->setTitleFontSize(30);
-	statisticsButton->setTitleFontName(CONSTANTS::FONT_NAME);
+	statisticsButton->setTitleFontName(Constants::FONT_NAME);
 	statisticsButton->setPosition(Vec2(240, 190));
 	statisticsButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)

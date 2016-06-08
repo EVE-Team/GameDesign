@@ -1,7 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "MainMenuScene.h"
-#include "CONSTANTS.h"
+#include "Constants.h"
 
 USING_NS_CC;
 
@@ -41,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-		glview = GLViewImpl::create(CONSTANTS::GAME_NAME);
+		glview = GLViewImpl::create(Constants::GAME_NAME);
         director->setOpenGLView(glview);
     }
 

@@ -19,7 +19,7 @@ Scene* CMainMenuScene::createScene()
 
 bool CMainMenuScene::init()
 {
-	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
+	auto backGround = CBackGround::Create(Constants::BACKGROUND_FILENAME);
 	this->addChild(backGround, 0);
 	CreateSceneLabels();
 	return true;
@@ -27,25 +27,25 @@ bool CMainMenuScene::init()
 
 void CMainMenuScene::CreateSceneLabels()
 {
-	auto name = Label::createWithTTF(CONSTANTS::GAME_NAME, CONSTANTS::FONT_NAME, 34);
+	auto name = Label::createWithTTF(Constants::GAME_NAME, Constants::FONT_NAME, 34);
 	name->setPosition(Vec2(240, 280));
 	name->setTag(1);
 	this->addChild(name, 1);
 	int shift = 0;
 	auto btnNewGame = ui::Button::create();
-	btnNewGame->setTitleText(CONSTANTS::START_GAME_CAPTION);
+	btnNewGame->setTitleText(Constants::START_GAME_CAPTION);
 	btnNewGame->setColor(Color3B::BLUE);
 	btnNewGame->setTitleFontSize(30);
-	btnNewGame->setTitleFontName(CONSTANTS::FONT_NAME);
+	btnNewGame->setTitleFontName(Constants::FONT_NAME);
 	btnNewGame->setPosition(Vec2(240, 240 - shift));
 	btnNewGame->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)
 		{
 		case ui::Widget::TouchEventType::BEGAN:
 			{
-				UserDefault::getInstance()->setIntegerForKey(DataKeys::SCORE_COUNT_KEY, 0);
-				UserDefault::getInstance()->setIntegerForKey(DataKeys::TRAIN_LEN_KEY, 3);
-				UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, 3);
+				UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY, 0);
+				UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY, 3);
+				UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, 3);
 				auto scene = HelloWorld::createScene();
 				Director::getInstance()->replaceScene(scene);
 			}			
@@ -67,14 +67,14 @@ void CMainMenuScene::CreateSceneLabels()
 	{
 		if (lifes > 0)
 		{
-			UserDefault::getInstance()->setIntegerForKey(DataKeys::SCORE_COUNT_KEY, score);
-			UserDefault::getInstance()->setIntegerForKey(DataKeys::TRAIN_LEN_KEY, trainLen);
-			UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, lifes);
+			UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY, score);
+			UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY, trainLen);
+			UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, lifes);
 			auto btnResume = ui::Button::create();
-			btnResume->setTitleText(CONSTANTS::TITLE_RESUME_GAME);
+			btnResume->setTitleText(Constants::TITLE_RESUME_GAME);
 			btnResume->setColor(Color3B::BLUE);
 			btnResume->setTitleFontSize(30);
-			btnResume->setTitleFontName(CONSTANTS::FONT_NAME);
+			btnResume->setTitleFontName(Constants::FONT_NAME);
 			btnResume->setPosition(Vec2(240, 240 - shift));
 			btnResume->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 				switch (type)
@@ -97,10 +97,10 @@ void CMainMenuScene::CreateSceneLabels()
 	}	
 
 	auto statisticsButton = ui::Button::create();
-	statisticsButton->setTitleText(CONSTANTS::STAT_CAPTION);
+	statisticsButton->setTitleText(Constants::STAT_CAPTION);
 	statisticsButton->setColor(Color3B::BLUE);
 	statisticsButton->setTitleFontSize(30);
-	statisticsButton->setTitleFontName(CONSTANTS::FONT_NAME);
+	statisticsButton->setTitleFontName(Constants::FONT_NAME);
 	statisticsButton->setPosition(Vec2(240, 240 - shift));
 	statisticsButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)
@@ -121,10 +121,10 @@ void CMainMenuScene::CreateSceneLabels()
 	shift += 30;
 
 	auto exitButton = ui::Button::create();
-	exitButton->setTitleText(CONSTANTS::EXIT_CAPTION);
+	exitButton->setTitleText(Constants::EXIT_CAPTION);
 	exitButton->setColor(Color3B::BLUE);
 	exitButton->setTitleFontSize(30);
-	exitButton->setTitleFontName(CONSTANTS::FONT_NAME);
+	exitButton->setTitleFontName(Constants::FONT_NAME);
 	exitButton->setPosition(Vec2(240, 240 - shift));
 	exitButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 		switch (type)

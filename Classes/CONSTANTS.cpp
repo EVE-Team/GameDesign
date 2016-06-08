@@ -36,3 +36,7 @@ const int Constants::RAIL_POSITON_Y = 78;
 const int Constants::MAX_LEN = 9;
 const int Constants::NUMBER_OF_CARRIAGE = 6;
 const int Constants::NUMBER_OF_HS_POS = 5;
+
+
+const char* Constants::Files::GAME_SAVES = "saves.db";
+const char*  Constants::Files::HIGH_SCORE = "score.db";

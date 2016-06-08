@@ -47,6 +47,13 @@ public:
 		static const char* SCORE_COUNT_KEY;
 		static const char* TRAIN_LEN_KEY;
 	};
+
+	class Files
+	{
+	public:
+		static const char* GAME_SAVES;
+		static const char* HIGH_SCORE;
+	};
 };
 
 

@@ -60,7 +60,7 @@ void CStatisticsScene::SetEventListener()
 vector<int> CStatisticsScene::GetHighScore()
 {
 	ifstream file;
-	string path = FileUtils::getInstance()->getWritablePath() + "/score.db";
+	string path = FileUtils::getInstance()->getWritablePath() + Constants::Files::HIGH_SCORE;
 	file.open(path);
 	string line;
 	vector<int> temp;

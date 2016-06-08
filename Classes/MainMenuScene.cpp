@@ -60,7 +60,7 @@ void CMainMenuScene::CreateSceneLabels()
 	shift += 30;
 
 	ifstream file;
-	string savesPath = FileUtils::getInstance()->getWritablePath() + "/saves.db";
+	string savesPath = FileUtils::getInstance()->getWritablePath() + Constants::Files::GAME_SAVES;
 	file.open(savesPath);
 	int score, lifes, trainLen;
 	if (file >> lifes && file >> trainLen && file >> score)

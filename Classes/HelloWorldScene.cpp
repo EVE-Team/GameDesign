@@ -204,7 +204,7 @@ void HelloWorld::ShowState(const std::string& text)
 void HelloWorld::SaveScore(const string& score)
 {
 	ofstream file;
-	string path = FileUtils::getInstance()->getWritablePath() + "/score.db";
+	string path = FileUtils::getInstance()->getWritablePath() + Constants::Files::HIGH_SCORE;
 	file.open(path, ios::app);
 	file << score << endl;
 	file.close();
@@ -224,7 +224,7 @@ void HelloWorld::SaveResult()
 	int score = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY);
 	int lifes = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY);
 	ofstream file;
-	string savesPath = FileUtils::getInstance()->getWritablePath() + "/saves.db";
+	string savesPath = FileUtils::getInstance()->getWritablePath() + Constants::Files::GAME_SAVES;
 	file.open(savesPath);
 	file << lifes << endl << trainLen << endl << score;
 	file.close();

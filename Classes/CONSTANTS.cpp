@@ -1,6 +1,5 @@
 #include "CONSTANTS.h"
 
-int CONSTANTS::len = 3; 
-int CONSTANTS::state = 0;
-int CONSTANTS::score = 0;
-int CONSTANTS::number_life = 3;
+const char* DataKeys::LIFE_COUNT_KEY = "life_count";
+const char* DataKeys::SCORE_COUNT_KEY = "score_count";
+const char* DataKeys::TRAIN_LEN_KEY = "train_len";

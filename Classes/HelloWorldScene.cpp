@@ -9,6 +9,7 @@
 #include "BackGround.h"
 #include "Constants.h"
 #include "BackCarriage.h"
+#include "PauseButton.h"
 
 using namespace cocos2d;
 using namespace json11;
@@ -34,31 +35,37 @@ bool HelloWorld::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME);
+	auto backGround = CBackGround::Create(CONSTANTS::BACKGROUND_FILENAME_MAIN);
 	this->addChild(backGround, 0);
 	InitBasicObjects();
 	
 	m_railTransport = CRailTransport::create();
-	m_railTransport->BeginNewLevel(CONSTANTS::len);
+	m_railTransport->BeginNewLevel(UserDefault::getInstance()->getIntegerForKey(DataKeys::TRAIN_LEN_KEY));
 	this->addChild(m_railTransport);
 
-	auto score = Label::createWithTTF(CONSTANTS::SCORE_TITLE + flatbuffers::NumToString(CONSTANTS::score), CONSTANTS::FONT_NAME, 16);
+	auto score = Label::createWithTTF(CONSTANTS::SCORE_TITLE + 
+		flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(DataKeys::SCORE_COUNT_KEY)),
+		CONSTANTS::FONT_NAME, 16);
 	score->setColor(Color3B::YELLOW);	
 	score->setAnchorPoint(Vec2(0, 0));
-	score->setPosition(Vec2(10, 290));
+	score->setPosition(Vec2(10, 30));
 	this->addChild(score, 1);
 
-	auto life = Sprite::create(CONSTANTS::LIFES_IMAGE_FILENAME);
-	life->setScale(0.03);
+	auto life = Sprite::create(CONSTANTS::LIFES_IMAGE_FILENAME);	
 	life->setAnchorPoint(Vec2(0, 0));
-	life->setPosition(Vec2(90, 295));
+	life->setPosition(Vec2(85, 33));
 	this->addChild(life, 1);
 
-	auto nLife = Label::createWithTTF(flatbuffers::NumToString(CONSTANTS::number_life), CONSTANTS::FONT_NAME, 16);
+	auto nLife = Label::createWithTTF(flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(DataKeys::LIFE_COUNT_KEY)),
+		CONSTANTS::FONT_NAME, 16);
 	nLife->setColor(Color3B::YELLOW);
 	nLife->setAnchorPoint(Vec2(0, 0));
-	nLife->setPosition(Vec2(100, 290));
+	nLife->setPosition(Vec2(105, 30));
 	this->addChild(nLife, 1);
+
+	auto btnPause = CPauseButton::Create(CONSTANTS::PAUSE_BTN_IMG_FILENAME);
+	btnPause->setPosition(Vec2(30, 290));
+	this->addChild(btnPause, 1);
 
 	return true;
 }
@@ -112,42 +119,51 @@ void HelloWorld::ShowState(const std::string& text)
 	gameState->setTitleFontName(CONSTANTS::FONT_NAME);
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	gameState->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + CONSTANTS::RAIL_POSITON_Y));
-	int length = m_length++;
+	int trainLen = UserDefault::getInstance()->getIntegerForKey(DataKeys::TRAIN_LEN_KEY);
+	int score = UserDefault::getInstance()->getIntegerForKey(DataKeys::SCORE_COUNT_KEY);
+	int lifes = UserDefault::getInstance()->getIntegerForKey(DataKeys::LIFE_COUNT_KEY);
+	int state = 0;
+
 	if (text == "You win")
 	{
-		CONSTANTS::score = CONSTANTS::score +  100 * CONSTANTS::len;
-		if (CONSTANTS::len < CONSTANTS::MAX_LEN)
+		score = score + 100 * trainLen;
+		UserDefault::getInstance()->setIntegerForKey(DataKeys::SCORE_COUNT_KEY, score);
+		if (trainLen < CONSTANTS::MAX_LEN)
 		{
 			title = "Next level";
 			gameState->setTitleText(title);
-			CONSTANTS::state = 2;
-			CONSTANTS::len++;
+			state = 2;			
+			UserDefault::getInstance()->setIntegerForKey(DataKeys::TRAIN_LEN_KEY, ++trainLen);
 		}
 		else
 		{
-			CONSTANTS::state = 1;
+			state = 1;					
 		}
 	}
 	else
 	{
-		if (CONSTANTS::number_life == 1)
+		if (lifes == 1)
 		{
-			CONSTANTS::state = 3;			
-			SaveScore(flatbuffers::NumToString(CONSTANTS::score));
-			CONSTANTS::score = 0;
-			CONSTANTS::number_life = 3;
+			state = 3;
+			auto scoreLabel = Label::createWithTTF("Your score: " + flatbuffers::NumToString(score), CONSTANTS::FONT_NAME, 24);
+			scoreLabel->setColor(Color3B::YELLOW);
+			scoreLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 70));
+			this->addChild(scoreLabel,10);
+			SaveScore(flatbuffers::NumToString(score));
+			UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, 3);
+			UserDefault::getInstance()->setIntegerForKey(DataKeys::SCORE_COUNT_KEY, 0);
 		}
 		else
 		{
 			title = "Try again";
 			gameState->setTitleText(title);
-			CONSTANTS::state = 2;
-			CONSTANTS::number_life--;
+			state = 2;			
+			UserDefault::getInstance()->setIntegerForKey(DataKeys::LIFE_COUNT_KEY, --lifes);
 		}
 	}
-	if ((CONSTANTS::state == 1) || (CONSTANTS::state == 3))
+	if ((state == 1) || (state == 3))
 	{
-		CONSTANTS::len = 3;
+		UserDefault::getInstance()->setIntegerForKey(DataKeys::TRAIN_LEN_KEY, 3);
 		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 			switch (type)
 			{

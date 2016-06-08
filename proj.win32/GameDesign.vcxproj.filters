@@ -63,6 +63,12 @@
     <ClCompile Include="..\Classes\RailTransport.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PauseButton.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PauseScene.cpp">
+      <Filter>src\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -100,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RailTransport.h">
       <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PauseButton.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PauseScene.h">
+      <Filter>src\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

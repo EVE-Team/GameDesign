@@ -54,13 +54,3 @@ public:
 		static const char* HIGH_SCORE;
 	};
 };
-
-
-
-
-struct MyPoint
-{
-	int x;
-	int y;
-};
-

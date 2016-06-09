@@ -8,7 +8,6 @@ public:
 	static const char* TITLE_PAUSE;
 	static const char* GAME_NAME;
 	static const char* GAME_OVER;
-	static const char* REPEAT_ACTION;
 	static const char* PAUSE_SPRITE_FILENAME;
 	static const char* START_GAME_CAPTION;
 	static const char* TITLE_RESUME_GAME;

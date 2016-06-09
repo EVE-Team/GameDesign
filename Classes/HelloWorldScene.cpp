@@ -137,17 +137,16 @@ void HelloWorld::ShowState(const std::string& text)
 		}
 		else
 		{
-			state = 1;					
+			
+			state = 1;			
 		}
 	}
 	else
 	{
 		UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, --lifes);
 		if (lifes == 0)
-		{		
-			SaveResult();
-			state = 3;
-			SaveScore(flatbuffers::NumToString(score));
+		{			
+			state = 1;			
 		}
 		else
 		{
@@ -156,8 +155,11 @@ void HelloWorld::ShowState(const std::string& text)
 			state = 2;				
 		}
 	}
-	if ((state == 1) || (state == 3))
+	if (state == 1)
 	{
+		UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, 0);
+		SaveScore(flatbuffers::NumToString(score));
+		SaveResult();
 		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
 			switch (type)
 			{

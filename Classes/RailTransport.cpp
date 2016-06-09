@@ -137,9 +137,8 @@ void CRailTransport::CheckGameState()
 	}
 	RemoveListenersForWagons();
 	auto move = MoveBy::create(1, Vec2(shift, 0));
-	this->runAction(RepeatForever::create(move));
-	string text = right ? "You win" : Constants::GAME_OVER;
-	dynamic_cast<HelloWorld*>(this->getParent())->ShowState(text);
+	this->runAction(RepeatForever::create(move));	
+	dynamic_cast<HelloWorld*>(this->getParent())->ShowState(right);
 }
 
 void CRailTransport::RemoveListenersForWagons()

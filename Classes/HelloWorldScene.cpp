@@ -38,14 +38,15 @@ bool HelloWorld::init()
 	auto backGround = CBackGround::Create(Constants::BACKGROUND_FILENAME_MAIN);
 	this->addChild(backGround, 0);
 	InitBasicObjects();
-	
+	int trainLen = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY);
+	int score = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY);
+	int lifes = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY);
+
 	m_railTransport = CRailTransport::create();
-	m_railTransport->BeginNewLevel(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY));
+	m_railTransport->BeginNewLevel(trainLen);
 	this->addChild(m_railTransport);
 
-	m_scoreLabel = Label::createWithTTF(Constants::SCORE_TITLE +
-		flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY)),
-		Constants::FONT_NAME, 16);
+	m_scoreLabel = Label::createWithTTF(Constants::SCORE_TITLE + flatbuffers::NumToString(score),Constants::FONT_NAME, 16);
 	m_scoreLabel->setColor(Color3B::YELLOW);
 	m_scoreLabel->setAnchorPoint(Vec2(0, 0));
 	m_scoreLabel->setPosition(Vec2(10, 30));
@@ -56,8 +57,7 @@ bool HelloWorld::init()
 	m_lifesSprite->setPosition(Vec2(85, 33));
 	this->addChild(m_lifesSprite, 1);
 
-	m_lifesLabel = Label::createWithTTF(flatbuffers::NumToString(UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY)),
-		Constants::FONT_NAME, 16);
+	m_lifesLabel = Label::createWithTTF(flatbuffers::NumToString(lifes), Constants::FONT_NAME, 16);
 	m_lifesLabel->setColor(Color3B::YELLOW);
 	m_lifesLabel->setAnchorPoint(Vec2(0, 0));
 	m_lifesLabel->setPosition(Vec2(105, 30));
@@ -108,56 +108,59 @@ void HelloWorld::RemoveListenersForWagons()
 }
 
 
-void HelloWorld::ShowState(const std::string& text)
+void HelloWorld::ShowState(const bool right)
 {
 	RemoveListenersForWagons();
-	string title = text;
-	auto gameState = ui::Button::create();
-	gameState->setTitleText(text);
-	gameState->setColor(Color3B::YELLOW);
-	gameState->setTitleFontSize(64);
-	gameState->setTitleFontName(Constants::FONT_NAME);
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	gameState->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + Constants::RAIL_POSITON_Y));
+
 	int trainLen = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY);
 	int score = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY);
 	int lifes = UserDefault::getInstance()->getIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY);
 	int state = 0;
-
-	if (text == "You win")
+	string title;
+	if (right)
 	{
-		score = score + 100 * trainLen;
-		UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY, score);
+		score = score + 100 * trainLen;		
 		if (trainLen < Constants::MAX_LEN)
 		{
-			title = "Next level";
-			gameState->setTitleText(title);
+			title = "Next level";			
 			state = 2;			
-			UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY, ++trainLen);
+			trainLen++;
 		}
 		else
 		{
-			
+			title = "You win!";
+			lifes = 0;
 			state = 1;			
 		}
 	}
 	else
 	{
-		UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, --lifes);
+		lifes--;
 		if (lifes == 0)
-		{			
+		{	
+			title = Constants::GAME_OVER;
 			state = 1;			
 		}
 		else
 		{
-			title = "Try again";
-			gameState->setTitleText(title);
+			title = "Try again";			
 			state = 2;				
 		}
 	}
+
+	UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::SCORE_COUNT_KEY, score);
+	UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::TRAIN_LEN_KEY, trainLen);
+	UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, lifes);
+
+	auto gameState = ui::Button::create();
+	gameState->setTitleFontSize(64);
+	gameState->setTitleFontName(Constants::FONT_NAME);
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	gameState->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + Constants::RAIL_POSITON_Y));
+	gameState->setTitleText(title);
+	gameState->setColor(Color3B::YELLOW);
 	if (state == 1)
-	{
-		UserDefault::getInstance()->setIntegerForKey(Constants::DataKeys::LIFE_COUNT_KEY, 0);
+	{		
 		SaveScore(flatbuffers::NumToString(score));
 		SaveResult();
 		gameState->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){

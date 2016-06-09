@@ -14,7 +14,7 @@ public:
 	void InitBasicObjects();
 	CRailTransport* m_railTransport;
 	void BeginLevel();	
-	void ShowState(const std::string& text);
+	void ShowState(const bool right);
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 	void SetListenersForWagons();

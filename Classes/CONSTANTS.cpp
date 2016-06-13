@@ -29,7 +29,7 @@ const char* Constants::BACKGROUND_FILENAME = "images/background2.png";
 const char* Constants::CARRIAGE_SPRITE_FILENAME = "images/";
 const char* Constants::CARRIAGE_FILENAME_RESOLUTION = ".png";
 const char* Constants::LIFES_IMAGE_FILENAME = "images/life.png";
-const char* Constants::PAUSE_BTN_IMG_FILENAME = "images/pause_button1.png";
+const char* Constants::PAUSE_BTN_IMG_FILENAME = "images/pause_button.png";
 
 
 const int Constants::RAIL_POSITON_Y = 78;
